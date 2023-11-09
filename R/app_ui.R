@@ -6,11 +6,17 @@
 #' @noRd
 app_ui <- function(request) {
   tagList(
-    # Leave this function for adding external resources
-    golem_add_external_resources(),
     # Your application UI logic
     fluidPage(
-      h1("landscaperesilience")
+      htmltools::tags$head(
+        htmltools::tags$link(rel="stylesheet", href="https://js.arcgis.com/4.28/esri/themes/light/main.css"),
+        htmltools::tags$script(src="https://js.arcgis.com/4.28/"),
+        htmltools::tags$script(src = "www/script.js"),
+        htmltools::tags$link(rel = "stylesheet", type = "text/css", href = "www/styles.css")
+      ),
+      
+      h1("landscaperesilience"),
+      htmltools::tags$div(id = "viewDiv")
     )
   )
 }
