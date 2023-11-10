@@ -5,18 +5,19 @@
 #' @import shiny
 #' @noRd
 app_ui <- function(request) {
+  add_resource_path("www", app_sys("app/www"))
   tagList(
     # Your application UI logic
     fluidPage(
-      htmltools::tags$head(
-        htmltools::tags$link(rel="stylesheet", href="https://js.arcgis.com/4.28/esri/themes/light/main.css"),
-        htmltools::tags$script(src="https://js.arcgis.com/4.28/"),
-        htmltools::tags$script(src = "www/script.js"),
-        htmltools::tags$link(rel = "stylesheet", type = "text/css", href = "www/styles.css")
+      tags$head(
+        tags$link(rel="stylesheet", href="https://js.arcgis.com/4.28/esri/themes/light/main.css"),
+        tags$script(src="https://js.arcgis.com/4.28/"),
+        tags$script(src="www/script.js"),
+        tags$link(rel="stylesheet", type="text/css", href="www/styles.css"),
       ),
       
       h1("landscaperesilience"),
-      htmltools::tags$div(id = "viewDiv")
+      tags$div(id = "viewDiv")
     )
   )
 }
