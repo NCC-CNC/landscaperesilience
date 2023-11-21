@@ -1,4 +1,4 @@
-#' extract UI Function
+#' extract data UI Function
 #'
 #' @description A shiny Module.
 #'
@@ -7,7 +7,7 @@
 #' @noRd 
 #'
 #' @importFrom shiny NS tagList 
-mod_extract_ui <- function(id){
+mod_extract_data_ui <- function(id){
   ns <- NS(id)
   tagList(
     tagList(
@@ -16,13 +16,12 @@ mod_extract_ui <- function(id){
   )
 }
     
-#' extract Server Functions
+#' extract data Server Functions
 #'
 #' @noRd 
-mod_extract_server <- function(id){
-  moduleServer( id, function(input, output, session){
+mod_extract_data_server <- function(id, user_data){
+  moduleServer(id, function(input, output, session){
     ns <- session$ns
- 
   })
 }
     
