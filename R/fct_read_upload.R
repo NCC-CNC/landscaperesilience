@@ -14,7 +14,6 @@ read_shp <- function(userFile){
   }
   shp <- reactive({
     if(!is.data.frame(userFile())) return()
-    browser()
     infiles <- userFile()$datapath
     dir <- unique(dirname(infiles))
     outfiles <- file.path(dir, userFile()$name)

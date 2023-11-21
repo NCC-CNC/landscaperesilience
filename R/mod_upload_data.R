@@ -10,7 +10,7 @@
 mod_upload_data_ui <- function(id){
   ns <- NS(id)
   tagList(
-    fileInput(inputId = ns("upld_data"), label = "", multiple = TRUE)
+    fileInput(inputId = ns("upload_data"), label = "", multiple = TRUE)
   )
 }
     
@@ -18,9 +18,15 @@ mod_upload_data_ui <- function(id){
 #'
 #' @noRd 
 mod_upload_data_server <- function(id){
-  moduleServer( id, function(input, output, session){
+  moduleServer(id, function(input, output, session){
     ns <- session$ns
- 
+    # reactive values to return
+    to_return <- reactiveValues(user_poly=NULL)
+    path <- reactive({input$upload_data})
+    observeEvent(path(), {
+      to_return$user_poly <- read_shp(path)() # fct_read_upload.R 
+    })
+    return(to_return)
   })
 }
     
