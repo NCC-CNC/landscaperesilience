@@ -7,19 +7,39 @@
 app_ui <- function(request) {
   add_resource_path("www", app_sys("app/www"))
   tagList(
-    # Your application UI logic
-    fluidPage(
-      tags$head(
-        tags$link(rel="stylesheet", href="https://js.arcgis.com/4.28/esri/themes/light/main.css"),
-        tags$script(src="https://js.arcgis.com/4.28/"),
+    # HTML header
+    tags$head(
+      tags$link(rel="stylesheet", href="https://js.arcgis.com/4.28/esri/themes/light/main.css"),
+      tags$script(src="https://js.arcgis.com/4.28/"),
       tags$script(type="module", src="www/main.js", defer=""),
-        tags$link(rel="stylesheet", type="text/css", href="www/styles.css"),
-      ),
-      
-      h1("landscaperesilience"),
-      tags$div(id = "viewDiv")
+      tags$link(rel="stylesheet", type="text/css", href="www/styles.css"),
+    ),    
+    shinyjs::useShinyjs(), # inlcude shinyjs
+    # Navigation bar page
+    page_navbar(
+      title = "Landscape Resilience Webtool",
+      nav_panel(
+        title = "Map",
+        layout_sidebar(
+          sidebar = sidebar(id = "Sidebar", width = "33.3%",
+            navset_tab(
+              nav_panel(
+                title = "Overview",
+              ),
+              nav_panel(
+                title = "Extractions",
+                mod_upload_data_ui("upload_data_1"),
+                mod_extract_data_ui("extract_data_1"),
+                mod_download_data_ui("download_data_1")
+              )
+            )
+          ),
+          # ESRI Map
+          tags$div(id="map")
+        )
+       )
+      )
     )
-  )
 }
 
 #' Add external Resources to the Application
