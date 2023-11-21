@@ -7,8 +7,18 @@
 app_server <- function(input, output, session) {
   # Your application server logic
   
+  ## disable buttons ----
+  shinyjs::disable("extract_data_1-extract_data")
+
   # user upload ----
-  user_poly <- mod_upload_data_server(id = "upload_data_1")
+  shp <- mod_upload_data_server(id = "upload_data_1")
+  
+  # send upload to client ----
+  observeEvent(shp$user_poly,{
+    send_geojson(session=session, user_poly= reactive(shp$user_poly))
+  })
+  
+  # extract data ----
   
 # CLOSER SERVER  
 }
