@@ -12,7 +12,7 @@ app_ui <- function(request) {
       tags$head(
         tags$link(rel="stylesheet", href="https://js.arcgis.com/4.28/esri/themes/light/main.css"),
         tags$script(src="https://js.arcgis.com/4.28/"),
-        tags$script(src="www/script.js"),
+      tags$script(type="module", src="www/main.js", defer=""),
         tags$link(rel="stylesheet", type="text/css", href="www/styles.css"),
       ),
       
