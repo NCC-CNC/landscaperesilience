@@ -14,7 +14,7 @@ app_ui <- function(request) {
       tags$script(type="module", src="www/main.js", defer=""),
       tags$link(rel="stylesheet", type="text/css", href="www/styles.css"),
     ),    
-    shinyjs::useShinyjs(), # inlcude shinyjs
+    shinyjs::useShinyjs(), # include shinyjs
     # Navigation bar page
     page_navbar(
       title = "Landscape Resilience Webtool",

@@ -10,16 +10,44 @@
 mod_download_data_ui <- function(id){
   ns <- NS(id)
   tagList(
-    actionButton(inputId = ns("dwnld_data"), label = "Download Data", width = "100%")
+    downloadButton(outputId = ns("download_data"), label = "Download Data", width = "100%")
   )
 }
     
 #' download_data Server Functions
 #'
 #' @noRd 
-mod_download_data_server <- function(id){
+mod_download_data_server <- function(id, user_poly_download){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
+    
+    # Time stamp for output folder
+    datetime <- format(Sys.time(),"%Y%m%d%H%M%S")
+    
+    # Create temporary directory to save data
+    td <- tempfile()
+    dir.create(td, recursive = FALSE, showWarnings = FALSE)
+    
+    # Save shapefile to tmp director
+    sf::write_sf(user_poly_download(), paste0(td, "/impact_metrics.shp"))
+    
+    # Zip
+    files2zip <- list.files(td, full.names = TRUE, recursive = FALSE)
+    utils::zip(zipfile = file.path(td, paste0("impact_metrics_", datetime, ".zip")),
+               files = files2zip,
+               flags = '-r9Xj') # flag so it does not take parent folders
+    
+    # set download button behavior
+    output$download_data <- shiny::downloadHandler(
+      filename <- function() {
+        paste0("impact_metrics_", datetime, ".zip", sep="")
+      },
+      content <- function(file) {
+        file.copy(file.path(td, paste0("impact_metrics_", datetime, ".zip")), file)
+      },
+      contentType = "application/zip"
+    )    
+    
  
   })
 }
