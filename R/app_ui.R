@@ -28,7 +28,10 @@ app_ui <- function(request) {
               ),
               nav_panel(
                 title = "Extractions",
-                mod_upload_data_ui("upload_data_1"),
+                fluidRow(
+                  column(9, mod_upload_data_ui("upload_data_1")),
+                  column(3, mod_clear_data_ui("clear_data_1"))
+                ),
                 mod_extract_data_ui("extract_data_1"),
                 mod_download_data_ui("download_data_1")
               )

@@ -26,11 +26,8 @@ app_server <- function(input, output, session) {
 
   # user upload ----
   shp <- mod_upload_data_server(id = "upload_data_1")
-  
-  # send upload to client ----
-  observeEvent(shp$user_poly,{
-    send_geojson(session=session, user_poly= reactive(shp$user_poly))
-  })
+  # clear user upload ----
+  mod_clear_data_server(id = "clear_data_1", id_to_clear="upload_data_1-upload_data")
   
   # extract data ----
   ## enable extraction btn. if upload data successfully mapped

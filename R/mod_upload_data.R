@@ -10,7 +10,7 @@
 mod_upload_data_ui <- function(id){
   ns <- NS(id)
   tagList(
-    fileInput(inputId = ns("upload_data"), label = "", multiple = TRUE)
+    fileInput(inputId = ns("upload_data"), label = NULL, multiple = TRUE)
   )
 }
     
@@ -23,8 +23,12 @@ mod_upload_data_server <- function(id){
     # reactive values to return
     to_return <- reactiveValues(user_poly=NULL)
     path <- reactive({input$upload_data})
+    shp <- read_shp(path) # fct_read_upload.R 
     observeEvent(path(), {
-      to_return$user_poly <- read_shp(path)() # fct_read_upload.R 
+      # map: send upload to client
+      send_geojson(session=session, user_poly= shp)
+      # return for extractions
+      to_return$user_poly <- shp()
     })
     return(to_return)
   })

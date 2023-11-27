@@ -57,7 +57,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path) {
            id_ <- showNotification("Extracting impact metrics ...", duration = 0, closeButton=close)
            
            ## Extract MAX
-           max_vars <- rlist::list.filter(variables,(fun == "max"))
+           max_vars <- rlist::list.filter(input_data,(fun == "max"))
            max_layers <- rlist::list.mapv(max_vars, layer)
            max_shp_name <- rlist::list.mapv(max_vars, shp_name)
            extracted_max <- exact_extract(rast(max_layers), user_poly_prj, fun = "max", force_df = TRUE) %>% round(2)
@@ -65,7 +65,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path) {
            extracted_max[is.na(extracted_max)] <- 0 # replace NA with 0 
            
            ## Extract SUM
-           sum_vars <- rlist::list.filter(variables,(fun == "sum"))
+           sum_vars <- rlist::list.filter(input_data,(fun == "sum"))
            sum_layers <- rlist::list.mapv(sum_vars, layer)
            sum_shp_name <- rlist::list.mapv(sum_vars, shp_name)
            extracted_sum <- exact_extract(rast(sum_layers), user_poly_prj, fun = "sum", force_df = TRUE) %>% round(2)
