@@ -23,7 +23,11 @@ mod_extract_data_server <- function(id, user_poly, wtw_path) {
   moduleServer(id, function(input, output, session){
     ns <- session$ns
     # Return
-    to_return <- reactiveValues(user_poly_download = NULL, user_poly_display = NULL, completed_run = NULL)
+    to_return <- reactiveValues(
+      user_poly_download = NULL, 
+      user_poly_display = NULL,
+      completed_run = NULL
+      )
     
     # Listen for run extraction button to be clicked
     observeEvent(input$extract_data, {
@@ -48,12 +52,14 @@ mod_extract_data_server <- function(id, user_poly, wtw_path) {
              user_poly_prj <- st_transform(user_poly(), crs= st_crs(input_data$landr$layer))
            }
            
+           # Create ObjectId
+           user_poly_prj <- mutate(user_poly_prj, "OID" = row_number())
+           
            # Calculate geometry ha
            user_poly_prj$AREA_HA <- units::drop_units(units::set_units(st_area(user_poly_prj), value = ha))
            
            # Message
            incProgress(2)
-           removeNotification(id_)
            id_ <- showNotification("Extracting impact metrics ...", duration = 0, closeButton=close)
            
            ## Extract MAX
@@ -82,6 +88,14 @@ mod_extract_data_server <- function(id, user_poly, wtw_path) {
            to_return$completed_run <- input$extract_data
            to_return$user_poly_download <- user_poly_prj
            to_return$user_poly_display <- user_poly_wgs
+           
+           # Send to client
+           send_geojson(
+             session, 
+             user_poly = user_poly_wgs, 
+             poly_id = "data_poly", 
+             poly_title = "Upload Polygon (Data)"
+            )
            
            # Finish progress bar
            incProgress(3)
