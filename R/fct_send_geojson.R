@@ -7,10 +7,12 @@
 #' @noRd
 #' 
 #' @export
-send_geojson <- function(session, user_poly) {
+send_geojson <- function(session, user_poly, poly_id, poly_title) {
   
-  # call reactive
-  user_poly <- user_poly()
+  # call reactive if a reactive object
+  if (inherits(user_poly, "reactive")) {
+    user_poly <- user_poly()    
+  }
 
   # translate to WGS 84
   if (st_crs(user_poly) != st_crs(4326)) {
@@ -22,7 +24,7 @@ send_geojson <- function(session, user_poly) {
   
   # send geojson to client
   session$sendCustomMessage(
-    type = "send-geojson", message = geojson
+    type = "send-geojson", message = list(poly_id, poly_title, geojson)
   )
   
 }
