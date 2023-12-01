@@ -26,9 +26,11 @@ mod_upload_data_server <- function(id){
     shp <- read_shp(path) # fct_read_upload.R 
     observeEvent(path(), {
       # map: send upload to client
-      send_geojson(session=session, user_poly= shp)
+      send_geojson(session=session, user_poly=shp, poly_id="upload_poly", poly_title="Upload Polygon (No Data)")
       # return for extractions
       to_return$user_poly <- shp()
+      # enable extraction button
+      shinyjs::enable("extract_data_1-extract_data", asis = TRUE)
     })
     return(to_return)
   })
