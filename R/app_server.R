@@ -30,13 +30,6 @@ app_server <- function(input, output, session) {
   mod_clear_data_server(id = "clear_data_1", id_to_clear="upload_data_1-upload_data")
   
   # extract data ----
-  ## enable extraction btn. if upload data successfully mapped
-  observeEvent(input$layer_mapped, {
-    if (isTruthy(input$layer_mapped)) {
-      shinyjs::enable("extract_data_1-extract_data")
-    }
-  })
-  ## extract data
   extracted <- mod_extract_data_server(
     id = "extract_data_1",
     user_poly= reactive(shp$user_poly), 
