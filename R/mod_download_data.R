@@ -31,6 +31,21 @@ mod_download_data_server <- function(id, user_poly_download){
     # Save shapefile to tmp director
     sf::write_sf(user_poly_download(), paste0(td, "/impact_metrics.shp"))
     
+    # Generate total table
+    tot_impact <- tot_tbl(user_poly_download()) 
+    
+    # Save xlsx to tmp director
+    sf::write_sf(user_poly_download(), paste0(td, "/impact_metrics.xlsx"))
+    wb <- loadWorkbook(paste0(td, "/impact_metrics.xlsx"))
+    renameWorksheet(wb, "impact_metrics", "Data")
+    addWorksheet(wb,"Totals")
+    writeData(wb,"Totals", tot_impact)
+    modifyBaseFont(wb, fontSize = 11, fontColour = "black", fontName = "Calibri")
+    header_style <- createStyle(fgFill = "#2D602E", halign = "CENTER", textDecoration = "Bold", fontColour = "white")
+    addStyle(wb, sheet = 1, style = header_style, rows = 1, cols = 1:ncol(user_poly_download()), gridExpand = TRUE)
+    addStyle(wb, sheet = 2, style = header_style, rows = 1, cols = 1:2, gridExpand = TRUE)
+    saveWorkbook(wb, paste0(td, "/impact_metrics.xlsx"), overwrite = TRUE)
+    
     # Zip
     files2zip <- list.files(td, full.names = TRUE, recursive = FALSE)
     utils::zip(zipfile = file.path(td, paste0("impact_metrics_", datetime, ".zip")),
