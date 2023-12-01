@@ -21,24 +21,33 @@ app_ui <- function(request) {
       nav_panel(
         title = "Map",
         layout_sidebar(
-          sidebar = sidebar(id = "Sidebar", width = "33.3%",
+          sidebar = sidebar(id = "Sidebar", width = "25%",
             navset_tab(
               nav_panel(
                 title = "Overview",
-              ),
-              nav_panel(
-                title = "Extractions",
-                fluidRow(
-                  column(9, mod_upload_data_ui("upload_data_1")),
-                  column(3, mod_clear_data_ui("clear_data_1"))
-                ),
-                mod_extract_data_ui("extract_data_1"),
-                mod_download_data_ui("download_data_1")
               )
             )
           ),
           # ESRI Map
-          tags$div(id="map")
+          tags$div(id="viewDiv"),
+          # Attribute table
+          tags$div(class="tbl-container",
+            tags$div(id="tableDiv")
+          ),
+          
+          # Extraction controls
+          tags$div(id="extractPanel",
+            fluidRow(
+              column(9, mod_upload_data_ui("upload_data_1")),
+              column(3, mod_clear_data_ui("clear_data_1"))
+              ),
+            fluidRow(
+              mod_extract_data_ui("extract_data_1")
+            ),
+            fluidRow(
+            mod_download_data_ui("download_data_1")
+            )
+          )
         )
        )
       )
