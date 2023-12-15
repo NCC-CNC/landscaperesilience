@@ -25,7 +25,19 @@ app_ui <- function(request) {
             navset_tab(
               nav_panel(
                 title = "Overview",
-              )
+                # Histogram popup (landR)
+                tags$div(id="cardDiv",
+                 card(
+                   card_header("Landscape Resilience Score Distribution"),
+                   full_screen = TRUE,
+                   card_body(
+                     tags$div(id="histDiv", 
+                       mod_histogram_popup_ui("histogram_popup_1")      
+               )))),
+            
+               
+               # Close nav panel
+               )
             )
           ),
           # ESRI Map
@@ -37,17 +49,24 @@ app_ui <- function(request) {
           
           # Extraction controls
           tags$div(id="extractPanel",
-            fluidRow(
-              column(9, mod_upload_data_ui("upload_data_1")),
-              column(3, mod_clear_data_ui("clear_data_1"))
-              ),
-            fluidRow(
-              mod_extract_data_ui("extract_data_1")
-            ),
-            fluidRow(
-            mod_download_data_ui("download_data_1")
-            )
-          )
+            card( 
+              max_height = 400,
+              full_screen = FALSE,
+              card_header("Input, Extract and Download"),
+              card_body( 
+                fluidRow(
+                  column(9, mod_upload_data_ui("upload_data_1")),
+                  column(3, mod_clear_data_ui("clear_data_1"))
+                  ),
+                fluidRow(
+                  mod_name_from_user_poly_ui("name_from_user_poly_1")
+                 ),
+                fluidRow(
+                  mod_extract_data_ui("extract_data_1")
+                ),
+                fluidRow(
+                  mod_download_data_ui("download_data_1")
+                )))),
         )
        )
       )

@@ -19,13 +19,14 @@ mod_extract_data_ui <- function(id){
 #' extract data Server Functions
 #'
 #' @noRd 
-mod_extract_data_server <- function(id, user_poly, wtw_path) {
+mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field) {
   moduleServer(id, function(input, output, session){
     ns <- session$ns
     # Return
     to_return <- reactiveValues(
       user_poly_download = NULL, 
       user_poly_display = NULL,
+      landr_tbl = NULL,
       completed_run = NULL
       )
     
@@ -35,7 +36,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path) {
       #Start progress bar
       withProgress(
         message = "Running extractions",
-        value = 0, max = 3, { incProgress(1)
+        value = 0, max = 4, { incProgress(1)
                      
          tryCatch({ 
            
@@ -56,7 +57,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path) {
            user_poly_prj <- mutate(user_poly_prj, "OID" = row_number())
            
            # Calculate geometry ha
-           user_poly_prj$AREA_HA <- units::drop_units(units::set_units(st_area(user_poly_prj), value = ha))
+           user_poly_prj$AREA_HA <- units::drop_units(units::set_units(st_area(user_poly_prj), value = ha)) %>% round(2)
            
            # Message
            incProgress(2)
@@ -76,8 +77,25 @@ mod_extract_data_server <- function(id, user_poly, wtw_path) {
            sum_shp_name <- rlist::list.mapv(sum_vars, shp_name)
            extracted_sum <- exact_extract(rast(sum_layers), user_poly_prj, fun = "sum", force_df = TRUE) %>% round(2)
            names(extracted_sum) <- gsub("sum.", "", sum_shp_name)
-           extracted_sum[is.na(extracted_sum)] <- 0 # replace NA with 0            
+           extracted_sum[is.na(extracted_sum)] <- 0 # replace NA with 0   
            
+           ## Extract Landscape Resilience distribution
+           # Message
+           incProgress(3)
+           removeNotification(id_)
+           id_ <- showNotification("Extracting resilience ...", duration = 0, closeButton=close)
+           
+           user_poly_prj$LANDR_SUM <- exact_extract(input_data$landr$layer, user_poly_prj, 'sum') %>% round(2)
+           user_poly_prj$LANDR_MIN <- exact_extract(input_data$landr$layer, user_poly_prj, 'min') %>% round(2)
+           user_poly_prj$LANDR_MU <- exact_extract(input_data$landr$layer, user_poly_prj, 'mean') %>% round(2)
+           user_poly_prj$LANDR_MED <- exact_extract(input_data$landr$layer, user_poly_prj, 'median') %>% round(2)
+           user_poly_prj$LANDR_MAX <- exact_extract(input_data$landr$layer, user_poly_prj, 'max') %>% round(2)
+           user_poly_prj$LANDR_SD <- exact_extract(input_data$landr$layer, user_poly_prj, 'stdev') %>% round(2)
+           landr_tbl <- exact_extract(input_data$landr$layer, user_poly_prj) 
+           
+           # Round all values
+           landr_tbl <-round_nested_list(landr_tbl) # fct_round_nested_list.R
+          
            # Combine extractions into on sf object
            user_poly_prj <- cbind(user_poly_prj, extracted_max, extracted_sum)
            
@@ -88,17 +106,19 @@ mod_extract_data_server <- function(id, user_poly, wtw_path) {
            to_return$completed_run <- input$extract_data
            to_return$user_poly_download <- user_poly_prj
            to_return$user_poly_display <- user_poly_wgs
+           to_return$landr_tbl <- landr_tbl
            
            # Send to client
            send_geojson(
              session, 
-             user_poly = user_poly_wgs, 
+             user_poly = user_poly_wgs,
              poly_id = "data_poly", 
-             poly_title = "Upload Polygon (Data)"
+             poly_title = "Upload Polygon (Data)",
+             shp_name_field = shp_name_field()
             )
            
            # Finish progress bar
-           incProgress(3)
+           incProgress(4)
            removeNotification(id_)
            showNotification("... Extractions Completed!", duration = 5, closeButton=TRUE, type = 'message')           
            

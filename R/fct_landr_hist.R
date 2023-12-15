@@ -26,10 +26,10 @@ landr_hist_bits <- function(landr_tbl=NULL, oid=NULL) {
   bins <- seq(0, 4, by = 0.2) 
   bin_counts <- cut(landr_values, bins, right = FALSE) 
   df <- data.frame(table(bin_counts))
-  df$Bins <- as.character(counts_df$bin_counts)
-  df$Count <- counts_df$Freq
+  df$Bins <- as.character(df$bin_counts)
+  df$Count <- df$Freq
   # Generate labels for the bins
-  df$Xlabel <- gsub(",", "-", substring(as.character(counts_df$Bins), 2, nchar(as.character(counts_df$Bins)) - 1))
+  df$Xlabel <- gsub(",", "-", substring(as.character(df$Bins), 2, nchar(as.character(df$Bins)) - 1))
   
   return(list(df, mean_value, bins))
 }
@@ -60,7 +60,7 @@ empty_landr_hist <- function(landr_hist_df) {
       tickWidth = 1,     
       tickColor = "#000"
       ) %>%
-    highcharter::hc_subtitle(text = "Score Distribution") %>%
+    highcharter::hc_subtitle(text = "No Data") %>%
     highcharter::hc_yAxis(
       title = list(text = "Area (km2)")) %>%
     highcharter::hc_xAxis(

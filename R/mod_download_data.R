@@ -32,18 +32,29 @@ mod_download_data_server <- function(id, user_poly_download){
     sf::write_sf(user_poly_download(), paste0(td, "/impact_metrics.shp"))
     
     # Generate total table
-    tot_impact <- tot_tbl(user_poly_download()) 
+    total_tbl <- tot_tbl(user_poly_download())
+    
+    # Get metadata table
+    meta_tbl <- read.csv(system.file("extdata", "metadata.csv", package="landscaperesilience"))
     
     # Save xlsx to tmp director
     sf::write_sf(user_poly_download(), paste0(td, "/impact_metrics.xlsx"))
     wb <- loadWorkbook(paste0(td, "/impact_metrics.xlsx"))
     renameWorksheet(wb, "impact_metrics", "Data")
+    
+    # add new sheets
     addWorksheet(wb,"Totals")
-    writeData(wb,"Totals", tot_impact)
+    writeData(wb,"Totals", total_tbl)
+    addWorksheet(wb,"MetaData")
+    writeData(wb,"MetaData", meta_tbl)
+    
+    # Style excel
     modifyBaseFont(wb, fontSize = 11, fontColour = "black", fontName = "Calibri")
     header_style <- createStyle(fgFill = "#2D602E", halign = "CENTER", textDecoration = "Bold", fontColour = "white")
     addStyle(wb, sheet = 1, style = header_style, rows = 1, cols = 1:ncol(user_poly_download()), gridExpand = TRUE)
     addStyle(wb, sheet = 2, style = header_style, rows = 1, cols = 1:2, gridExpand = TRUE)
+    addStyle(wb, sheet = 3, style = header_style, rows = 1, cols = 1:6, gridExpand = TRUE)
+    
     saveWorkbook(wb, paste0(td, "/impact_metrics.xlsx"), overwrite = TRUE)
     
     # Zip

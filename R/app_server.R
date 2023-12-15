@@ -21,20 +21,41 @@ app_server <- function(input, output, session) {
   }  
   
   ## disable buttons ----
+  shinyjs::disable("name_from_user_poly_1-PN")
   shinyjs::disable("extract_data_1-extract_data")
   shinyjs::disable("download_data_1-download_data")
 
   # user upload ----
   shp <- mod_upload_data_server(id = "upload_data_1")
   # clear user upload ----
-  mod_clear_data_server(id = "clear_data_1", id_to_clear="upload_data_1-upload_data")
+  mod_clear_data_server(id = "clear_data_1")
   
+  # get polygon fields ----
+  shp_name_field <- mod_name_from_user_poly_server(
+    id = "name_from_user_poly_1",
+    path = reactive(shp$path),
+    user_poly_fields = reactive(shp$fields)
+   )
+
   # extract data ----
   extracted <- mod_extract_data_server(
     id = "extract_data_1",
-    user_poly= reactive(shp$user_poly), 
-    wtw_path = wtw_path
+    user_poly = reactive(shp$user_poly), 
+    wtw_path = wtw_path,
+    shp_name_field = shp_name_field$shp_name_field
   )
+  
+  # sidebar popup ----
+  observeEvent(input$polyOID, {
+    # histogram
+    mod_histogram_popup_server(
+      id ="histogram_popup_1",
+      landr_tbl = extracted$landr_tbl,
+      oid = input$polyOID,
+      shp_name = shp_name_field$shp_name_field,
+      user_poly = reactive(extracted$user_poly_download)
+    )
+  }, ignoreNULL= FALSE)
   
   # download data ----
   observeEvent(extracted$completed_run, {

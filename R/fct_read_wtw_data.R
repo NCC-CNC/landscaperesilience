@@ -102,6 +102,10 @@ read_wtw_data <- function(wtw_path) {
   wet <- rast(file.path(wtw_path, "habitat", "Wetland_comb_proj_diss_90m_Arc.tif"))
   wet <- round(wet,2) # original data has a min of 0.00111111,
   names(wet) <- "WET"
+  
+  ## lakes
+  lakes <- rast(file.path(wtw_path, "habitat", "Lakes_CanVec_50k_ha.tif"))
+  names(lakes) <- "LAKES"
 
   ## rivers
   river <- rast(file.path(wtw_path, "habitat", "grid_1km_water_linear_flow_length_1km.tif"))
@@ -126,7 +130,7 @@ read_wtw_data <- function(wtw_path) {
   
   # Create named list
   variables <- list(
-    landr = list(theme=NULL, name="Landscape Resilience", shp_name="LANDR", layer=landr, unit="score", fun="sum"),
+    landr = list(theme=NULL, name="Landscape Resilience", shp_name="LANDR", layer=landr, unit="score", fun="custom"),
     sar = list(theme="Biodiversity", name="Species at Risk", shp_name="SAR_RICH" , layer=sar_rich, unit="count", fun="max"),
     end = list(theme="Biodiversity", name="Endemic Species", shp_name="END_RICH", layer=end_rich, unit="count", fun="max"),
     biod = list(theme="Biodiversity", name="Common Species", shp_name="BIOD_RICH", layer=biod_rich, unit="count", fun="max"),
@@ -141,6 +145,7 @@ read_wtw_data <- function(wtw_path) {
     forest = list(theme="Habitat", name="Forest", layer=forest, shp_name="FOREST_LC", unit="ha", fun="sum"),
     grass = list(theme="Habitat", name="Grassland", layer=grass, shp_name="GRASS",  unit="ha", fun="sum"),
     wet = list(theme="Habitat", name="Wetland", layer=wet, shp_name="WET",  unit="ha", fun="sum"),
+    lakes = list(theme="Habitat", name="Lakes", layer=lakes, shp_name="LAKES", unit="ha", fun="sum"),
     river = list(theme="Habitat", name="Rivers", layer=river, shp_name="RIVER", unit="km", fun="sum"),
     shore = list(theme="Habitat", name="Shoreline", layer=shore, shp_name="SHORE",  unit="km", fun="sum"),
     parks = list(theme="Protection", name="CPCAD and NCC", layer=parks, shp_name="PARKS", unit="ha", fun="sum"),

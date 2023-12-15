@@ -7,7 +7,7 @@
 #' @noRd
 #' 
 #' @export
-send_geojson <- function(session, user_poly, poly_id, poly_title) {
+send_geojson <- function(session, user_poly, poly_id, poly_title, shp_name_field=NULL) {
   
   # call reactive if a reactive object
   if (inherits(user_poly, "reactive")) {
@@ -24,7 +24,7 @@ send_geojson <- function(session, user_poly, poly_id, poly_title) {
   
   # send geojson to client
   session$sendCustomMessage(
-    type = "send-geojson", message = list(poly_id, poly_title, geojson)
+    type = "send-geojson", message = list(poly_id, poly_title, geojson, shp_name_field)
   )
   
 }
