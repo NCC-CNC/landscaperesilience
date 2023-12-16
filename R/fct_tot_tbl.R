@@ -16,6 +16,7 @@ tot_tbl <- function(sf) {
       `Forest (ha)` = sum(FOREST_LC), n = n(),
       `Wetland (ha)` = sum(WET), n = n(),
       `Grassland (ha)` = sum(GRASS), n = n(),
+      `Lakes (ha)` = sum(LAKES), n = n(),
       `Rivers (km)` = sum(RIVER), n = n(),
       `Shoreline (km)` = sum(SHORE), n = n(),
       `Carbon Storage (t)` = sum(CARBON_S), n = n(),

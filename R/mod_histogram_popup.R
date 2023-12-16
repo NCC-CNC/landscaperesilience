@@ -10,7 +10,7 @@
 mod_histogram_popup_ui <- function(id){
   ns <- NS(id)
   tagList(
-    highcharter::highchartOutput(outputId = ns("histpopup"), height = "350px")
+    highcharter::highchartOutput(outputId = ns("histpopup"), height = "325px")
   )
 }
     
@@ -57,14 +57,15 @@ mod_histogram_popup_server <- function(id, landr_tbl, oid = NULL, user_poly = NU
           ) %>%
         highcharter::hcpxy_update(
           subtitle = list(text = name),
-          xAxis = list(plotLines = list(list(
-          value = findInterval(landr_mean, bins) - 1,
-          color = '#FF5B00',
-          width = 1,
-          zIndex = 4,
-          label = list(
-            text = paste0("mean: ", landr_mean),
-            style = list( color = '#FF5B00', fontWeight = 'bold')))))
+          xAxis = list(
+            plotLines = list(list(
+              value = findInterval(landr_mean, bins) - 1,
+              color = '#FF5B00',
+              width = 1,
+              zIndex = 4,
+              label = list(
+                text = paste0("mean: ", landr_mean),
+                style = list( color = '#FF5B00', fontWeight = 'bold')))))
         ) 
       }
   })

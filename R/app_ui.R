@@ -24,18 +24,25 @@ app_ui <- function(request) {
           sidebar = sidebar(id = "Sidebar", width = "25%",
             navset_tab(
               nav_panel(
-                title = "Overview",
-                # Histogram popup (landR)
-                tags$div(id="cardDiv",
+                title = "Stats",
+                # Metrics popup (landR)
+                tags$div(id="cardDiv1",
                  card(
-                   card_header("Landscape Resilience Score Distribution"),
+                   full_screen = TRUE,
+                   card_body(
+                     tags$div(id="metricsDiv",
+                              mod_metrics_bar_ui("metrics_bar_1")
+                     )))),                
+                
+                # Histogram popup (landR)
+                tags$div(id="cardDiv2",
+                 card(
                    full_screen = TRUE,
                    card_body(
                      tags$div(id="histDiv", 
                        mod_histogram_popup_ui("histogram_popup_1")      
-               )))),
+               ))))
             
-               
                # Close nav panel
                )
             )

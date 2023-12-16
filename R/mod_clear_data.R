@@ -34,6 +34,20 @@ mod_clear_data_server <- function(id){
         type = "send-clear", message = TRUE
       )
       
+      # clear histogram
+      highcharter::highchartProxy("histogram_popup_1-histpopup") %>%
+        highcharter::hcpxy_remove_series(all=TRUE) %>%
+        highcharter::hcpxy_update(
+          subtitle = list(text = "No Data")
+        )
+      
+      # clear bar chart
+      highcharter::highchartProxy("metrics_bar_1-barpopup") %>%
+        highcharter::hcpxy_remove_series(all=TRUE) %>%
+        highcharter::hcpxy_update(
+          subtitle = list(text = "No Data")
+        )
+      
       # disable buttons
       shinyjs::disable("name_from_user_poly_1-PN", asis= TRUE)
       shinyjs::disable("extract_data_1-extract_data", asis = TRUE)

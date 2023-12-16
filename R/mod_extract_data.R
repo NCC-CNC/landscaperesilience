@@ -117,6 +117,9 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field) {
              shp_name_field = shp_name_field()
             )
            
+           # enable metrics picker in card
+           shinyjs::enable("metrics_bar_1-impact", asis = TRUE)
+           
            # Finish progress bar
            incProgress(4)
            removeNotification(id_)

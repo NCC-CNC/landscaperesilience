@@ -55,7 +55,7 @@ empty_landr_hist <- function(landr_hist_df) {
       pointPadding = 0, groupPadding = 0, borderWidth = 0, pointWidth = 10,
       color = "#33862B") %>%
     highcharter::hc_xAxis(
-      title = list(text = "Resilience Scores"),
+      title = list(text = "Resilience Scores Distribution"),
       categories = landr_hist_df$Xlabel,
       tickWidth = 1,     
       tickColor = "#000"
@@ -63,8 +63,6 @@ empty_landr_hist <- function(landr_hist_df) {
     highcharter::hc_subtitle(text = "No Data") %>%
     highcharter::hc_yAxis(
       title = list(text = "Area (km2)")) %>%
-    highcharter::hc_xAxis(
-      title = list(text = "Resilience Scores")) %>%
     highcharter::hc_tooltip(
       formatter = JS(
         "function() { return 'Score Range: ' + this.x + '<br>Area (km2): ' + this.y; }"

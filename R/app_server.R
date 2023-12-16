@@ -24,6 +24,7 @@ app_server <- function(input, output, session) {
   shinyjs::disable("name_from_user_poly_1-PN")
   shinyjs::disable("extract_data_1-extract_data")
   shinyjs::disable("download_data_1-download_data")
+  shinyjs::disable("metrics_bar_1-impact")
 
   # user upload ----
   shp <- mod_upload_data_server(id = "upload_data_1")
@@ -45,9 +46,20 @@ app_server <- function(input, output, session) {
     shp_name_field = shp_name_field$shp_name_field
   )
   
+  # bar chart: impact metrics
+  observeEvent(list(extracted$completed_run, input[["metrics_bar_1-impact"]]), {
+    mod_metrics_bar_server(
+    id = "metrics_bar_1",
+    user_poly = reactive(extracted$user_poly_download),
+    metric = input[["metrics_bar_1-impact"]],
+    shp_name_field = shp_name_field$shp_name_field
+  ) 
+  }, ignoreNULL= FALSE)
+  
+  
   # sidebar popup ----
   observeEvent(input$polyOID, {
-    # histogram
+    # histogram:landr
     mod_histogram_popup_server(
       id ="histogram_popup_1",
       landr_tbl = extracted$landr_tbl,
@@ -56,6 +68,7 @@ app_server <- function(input, output, session) {
       user_poly = reactive(extracted$user_poly_download)
     )
   }, ignoreNULL= FALSE)
+  
   
   # download data ----
   observeEvent(extracted$completed_run, {
