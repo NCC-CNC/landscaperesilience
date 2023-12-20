@@ -38,12 +38,16 @@ app_server <- function(input, output, session) {
     user_poly_fields = reactive(shp$fields)
    )
 
+  # get user .tif(s)
+  tif_data <- mod_upload_rasters_server(id = "upload_rasters_1")
+  
   # extract data ----
   extracted <- mod_extract_data_server(
     id = "extract_data_1",
     user_poly = reactive(shp$user_poly), 
     wtw_path = wtw_path,
-    shp_name_field = shp_name_field$shp_name_field
+    shp_name_field = shp_name_field$shp_name_field,
+    tif_data = tif_data
   )
   
   # bar chart: impact metrics
