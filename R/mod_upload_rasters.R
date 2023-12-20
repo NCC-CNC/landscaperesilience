@@ -53,7 +53,9 @@ mod_upload_rasters_server <- function(id){
           fileInput(
             inputId = ns(paste0("tif_", tif_id)), 
             label = NULL, 
-            multiple = FALSE)),
+            multiple = FALSE,
+            accept = ".tif",
+            width = "100%")),
           column(3,
           textInput(
             inputId = ns(paste0("tif_name_", tif_id)), 
@@ -115,6 +117,26 @@ mod_upload_rasters_server <- function(id){
        if(isTruthy(tif_data$ids)) {
          for(x in tif_data$ids) {
            if(isTruthy(input[[paste0("tif_name_", x)]])){
+             
+             # tif name validation
+             invalid_symbols <- "!@#$%^&*()-+=[]{}|\\:;\'\"<>,.?~"
+             iv <- shinyvalidate::InputValidator$new()
+             iv$add_rule(
+               inputId = paste0("tif_name_", x), 
+               rule = function(value) {
+                 if (nchar(value) > 9) {
+                   "9 char limit"
+                 } else if (grepl("^\\d", value)) {
+                   "numeric start"
+                 } else if (value %in% c("ID", "OID", "SHAPE")) {
+                   "reserved word"
+                 } else if(grepl(paste0("[", gsub("([][|\\\\])", "\\\\\\1", invalid_symbols), "]"), value, perl = TRUE)) {
+                   "invalid chars" 
+                 }
+               }
+              )
+             iv$enable()
+             
              # add raster name
              tif_data$names[[x]] <- input[[paste0("tif_name_", x)]]
              # enable add button
