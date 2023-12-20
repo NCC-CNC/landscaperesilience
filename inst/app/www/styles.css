@@ -1,8 +1,26 @@
+
 #viewDiv {
   padding: 0;
   margin: 0;
   height: calc(100vh - 60px);
   width: 100%;
+}
+
+.logo {
+  height: 25px;
+  width: 35px;
+}
+
+.navbar.navbar-default.navbar-static-top {
+  background-color: #2D602E !important;
+  height: 40px;
+}
+
+
+.app-title {
+  color: #fff !important;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .main.bslib-gap-spacing.html-fill-container  {
@@ -11,10 +29,12 @@
   gap: 0 !important;
 }
 
+.sidebar-content {
+  padding-top: 15px !important;
+}
+
 #extractPanel {
-  width: 350px;
-  background-color: #f7f7f7;
-  padding: 10px;
+  width: 425px;
 }
 
 
@@ -26,3 +46,64 @@
 .map-wth-feature-table {
   height: calc(100vh - 335px) !important;
 }
+
+#labelDiv {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -23px;
+  border-top: 1px solid black;
+}
+
+#cardDiv1 {
+  padding-top: 15px;
+  width: 430px;
+}
+
+.btn.btn-default.btn-file,
+.form-control,
+#clear_data_1-clear_data,
+#upload_rasters_1-remove_user_raster,
+#upload_rasters_1-add_raster_btn,
+.remove-raster-btn .btn {
+  padding: 5px;
+}
+
+.add_raster_control .row > *,
+.extract-download .row  {
+ padding-left: 5px;
+ padding-right: 5px;
+}
+
+.add_raster_p {
+  display: flex;
+  align-items: center;
+}
+
+.stats {
+  margin-top: -25px;
+  margin-left: 230px;
+}
+
+.invalid-feedback {
+  margin-top: -53px;
+}
+  
+.user-fields {
+  margin-top: -15px;
+}
+
+.shiny-notification-panel {
+  padding: 5px;
+}
+
+.shiny-notification-message {
+	background-color: #33862B ;
+	color:#000000;
+	font-weight: 900;
+}
+
+.progress-bar {
+  background-color: #33862B;
+}
+
+
