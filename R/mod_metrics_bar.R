@@ -47,7 +47,7 @@ mod_metrics_bar_server <- function(id, user_poly = NULL, metric = NULL, shp_name
 
       df <- user_poly() %>%
         st_drop_geometry() 
-      
+
       x_names <- unname(unlist(df[shp_name_field()]))
       
       # Update metrics bar  

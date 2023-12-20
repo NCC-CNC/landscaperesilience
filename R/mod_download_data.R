@@ -10,7 +10,7 @@
 mod_download_data_ui <- function(id){
   ns <- NS(id)
   tagList(
-    downloadButton(outputId = ns("download_data"), label = "Download Data", width = "100%")
+    downloadButton(outputId = ns("download_data"), label = "Download", width = "100%")
   )
 }
     

@@ -18,8 +18,9 @@ app_ui <- function(request) {
     # Navigation bar page
     page_navbar(
       title = "Landscape Resilience Webtool",
+      underline = FALSE,
       nav_panel(
-        title = "Map",
+        title = NULL,
         layout_sidebar(
           sidebar = sidebar(id = "Sidebar", width = "25%",
             navset_tab(
@@ -59,13 +60,14 @@ app_ui <- function(request) {
             card( 
               max_height = 800,
               full_screen = FALSE,
-              card_header("Zonal Stats"),
-              card_body( 
+              card_header("Zonal Statistics"),
+              card_body(
+                fluidRow(column(12, p("Input shapefile polygon (.shp, .shx, .dbf and .prj)"))),
                 fluidRow(
                   column(10, mod_upload_data_ui("upload_data_1")),
                   column(2, mod_clear_data_ui("clear_data_1"))
                   ),
-                fluidRow(
+                fluidRow(class="user-fields",
                   mod_name_from_user_poly_ui("name_from_user_poly_1")
                  ),
                 fluidRow(

@@ -40,7 +40,7 @@ mod_histogram_popup_server <- function(id, landr_tbl, oid = NULL, user_poly = NU
         pull(shp_name())
       
       # build landR histogram df
-      landr_hist_bits <- landr_hist_bits(landr_tbl=landr_tbl, oid=oid)
+      landr_hist_bits <- landr_hist_bits(landr_tbl=landr_tbl, oid=as.numeric(oid))
       landr_df <- landr_hist_bits[[1]]
       landr_mean <- landr_hist_bits[[2]]
       bins <- landr_hist_bits[[3]]

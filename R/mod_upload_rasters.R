@@ -10,7 +10,6 @@
 mod_upload_rasters_ui <- function(id){
   ns <- NS(id)
   tagList(
-    
     fluidRow(
       column(2,
       actionButton(inputId = ns("add_raster_btn"), label = NULL,  icon=icon("add"), width = "100%")),
@@ -85,10 +84,6 @@ mod_upload_rasters_server <- function(id){
         where = "afterEnd",
         ui = div
         )
-      
-      # disable add raster btn
-      shinyjs::disable("upload_rasters_1-add_raster_btn", asis = TRUE)
-      
     })
   
     
@@ -102,10 +97,6 @@ mod_upload_rasters_server <- function(id){
              ){
              # add raster
              tif_data$layers[[x]] <- rast(input[[paste0("tif_", x)]]$datapath)
-             # enable add button
-             if (isTruthy(tif_data$layers[[x]]) && isTruthy(tif_data$names[[x]])) {
-               shinyjs::enable("upload_rasters_1-add_raster_btn", asis = TRUE)
-             } 
            }
          }
        }
@@ -139,10 +130,6 @@ mod_upload_rasters_server <- function(id){
              
              # add raster name
              tif_data$names[[x]] <- input[[paste0("tif_name_", x)]]
-             # enable add button
-             if (isTruthy(tif_data$layers[[x]]) && isTruthy(tif_data$names[[x]])) {
-               shinyjs::enable("upload_rasters_1-add_raster_btn", asis = TRUE)
-             } 
            }
          }
        }
@@ -176,8 +163,6 @@ mod_upload_rasters_server <- function(id){
              tif_data$names[[x]][1] <- NA_character_
              # clear stat
              tif_data$stats[[x]][1] <- NA_character_
-             # enable add button
-             shinyjs::enable("upload_rasters_1-add_raster_btn", asis = TRUE)
            }
          }
        }

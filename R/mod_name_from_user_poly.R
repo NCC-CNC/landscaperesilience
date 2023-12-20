@@ -35,13 +35,13 @@ mod_name_from_user_poly_server <- function(id, path, user_poly_fields=NULL){
         session = session,
         inputId = "PN",
         label = "Select a column that uniquely identifies polygons",
-        choices = user_poly_fields()
+        choices = c("Unsure? Use OID", user_poly_fields())
       )
     })
     
     # get field name
     observeEvent(input$PN, {
-      to_return$shp_name_field <- reactive({input$PN})
+      to_return$shp_name_field <- reactive({ifelse(grepl("^Unsure\\?", input$PN), "OID", input$PN)})
     })
     
    return(to_return)  

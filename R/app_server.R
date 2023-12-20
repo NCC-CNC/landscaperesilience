@@ -47,7 +47,8 @@ app_server <- function(input, output, session) {
     user_poly = reactive(shp$user_poly), 
     wtw_path = wtw_path,
     shp_name_field = shp_name_field$shp_name_field,
-    tif_data = tif_data
+    tif_data = tif_data,
+    shp_name = shp$shp_name
   )
   
   # bar chart: impact metrics

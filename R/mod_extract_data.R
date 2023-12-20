@@ -11,7 +11,7 @@ mod_extract_data_ui <- function(id){
   ns <- NS(id)
   tagList(
     tagList(
-      actionButton(inputId = ns("extract_data"), label = "Extract Data", width = "100%")
+      actionButton(inputId = ns("extract_data"), label = "Run", icon=icon("play"), width = "100%")
     )
   )
 }
@@ -19,7 +19,7 @@ mod_extract_data_ui <- function(id){
 #' extract data Server Functions
 #'
 #' @noRd 
-mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field) {
+mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif_data = NULL, shp_name) {
   moduleServer(id, function(input, output, session){
     ns <- session$ns
     # Return
@@ -36,7 +36,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field) {
       #Start progress bar
       withProgress(
         message = "Running extractions",
-        value = 0, max = 4, { incProgress(1)
+        value = 0, max = 5, { incProgress(1)
                      
          tryCatch({ 
            
@@ -63,7 +63,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field) {
            incProgress(2)
            id_ <- showNotification("Extracting impact metrics ...", duration = 0, closeButton=close)
            
-           ## Extract MAX
+           ## Extract national data: MAX
            max_vars <- rlist::list.filter(input_data,(fun == "max"))
            max_layers <- rlist::list.mapv(max_vars, layer)
            max_shp_name <- rlist::list.mapv(max_vars, shp_name)
@@ -71,7 +71,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field) {
            names(extracted_max) <- gsub("max.", "", max_shp_name)
            extracted_max[is.na(extracted_max)] <- 0 # replace NA with 0 
            
-           ## Extract SUM
+           ## Extract national data: SUM
            sum_vars <- rlist::list.filter(input_data,(fun == "sum"))
            sum_layers <- rlist::list.mapv(sum_vars, layer)
            sum_shp_name <- rlist::list.mapv(sum_vars, shp_name)
@@ -96,6 +96,27 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field) {
            # Round all values
            landr_tbl <-round_nested_list(landr_tbl) # fct_round_nested_list.R
           
+           # Extract user .tif(s)
+           # Message
+           incProgress(4)
+           removeNotification(id_)
+           id_ <- showNotification("Extracting .tifs ...", duration = 0, closeButton=close)
+           
+           if (length(tif_data$ids) > 0) {
+             for (i in 1:length(tif_data$ids)){
+               tif <- tif_data$layers[[i]]
+               if (isTruthy(tif)) {
+                 # validate field name
+                 field_name <- shp_field_valid(tif_data$names[[i]]) # fct_shp_field_valid.R
+                 field_name <- ifelse(is.na(field_name), paste0("TIF_", i), field_name)
+                 # get stat
+                 stat <- tif_data$stats[[i]]
+                 # extract
+                 user_poly_prj[[field_name]] <- exact_extract(tif, user_poly_prj, stat) %>% round(2)
+               }
+             }
+           }
+           
            # Combine extractions into on sf object
            user_poly_prj <- cbind(user_poly_prj, extracted_max, extracted_sum)
            
@@ -108,20 +129,21 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field) {
            to_return$user_poly_display <- user_poly_wgs
            to_return$landr_tbl <- landr_tbl
            
+           
            # Send to client
            send_geojson(
              session, 
              user_poly = user_poly_wgs,
              poly_id = "data_poly", 
-             poly_title = "Upload Polygon (Data)",
+             poly_title = shp_name,
              shp_name_field = shp_name_field()
             )
            
            # enable metrics picker in card
            shinyjs::enable("metrics_bar_1-impact", asis = TRUE)
-           
+
            # Finish progress bar
-           incProgress(4)
+           incProgress(5)
            removeNotification(id_)
            showNotification("... Extractions Completed!", duration = 5, closeButton=TRUE, type = 'message')           
            
