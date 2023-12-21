@@ -14,7 +14,8 @@ mod_upload_data_ui <- function(id){
       inputId = ns("upload_data"), 
       label = NULL, 
       multiple = TRUE,
-      accept = c(".shp", ".shx", ".dbf", ".prj", ".sbn", ".sbx", ".cpg"))
+      accept = c(".shp", ".shx", ".dbf", ".prj", ".sbn", ".sbx", ".cpg"),
+      width = "100%")
   )
 }
     
@@ -29,23 +30,51 @@ mod_upload_data_server <- function(id){
     path <- reactive({input$upload_data})
     shp <- read_shp(path) # fct_read_upload.R 
     fields <- reactive({ colnames(shp()) })
-
+    
     observeEvent(path(), {
-      # get shp name with extenstion
-      shp_name <- path()$name[grepl("\\.shp$", path()$name)]
+      
+      # validate
+      if (is.null(shp())) {
+        shinyjs::runjs(
+          '
+          $("#upload_data_1-upload_data_progress").css("background-color", "#fc4e2a");
+          $("#upload_data_1-upload_data_progress").text("--Upload Error-- Clear input and try again.");
+          $("#upload_data_1-upload_data_progress").css("font-weight", "bold");
+          $("#upload_data_1-upload_data_progress").css("display", "flex");
+          $("#upload_data_1-upload_data_progress").css("justify-content", "center");
+          ' 
+        )
+        shinyjs::disable("upload_data_1-upload_data", asis = TRUE)
+      } else {
+        shinyjs::runjs(
+          '
+          $("#upload_data_1-upload_data_progress").css("background-color", "#33862B");
+          $("#upload_data_1-upload_data_progress").text("--Upload Success-- Run available");
+          $("#upload_data_1-upload_data_progress").css("font-weight", "bold");
+          $("#upload_data_1-upload_data_progress").css("display", "flex");
+          $("#upload_data_1-upload_data_progress").css("justify-content", "center");
+          ' 
+        )
+      }
+      
+      # get shp name with extension
+      shp_name <- reactive({ path()$name[grepl("\\.shp$", path()$name)] })
       
       # map: send upload to client
-      send_geojson(session=session, user_poly=shp, poly_id="upload_poly", poly_title=shp_name)
+      send_geojson(session=session, user_poly=shp, poly_id="upload_poly", poly_title=shp_name())
       
       # return for extractions
       to_return$user_poly <- shp()
       to_return$fields <- fields()
       to_return$path <- path()
-      to_return$shp_name <- shp_name
+      to_return$shp_name <- shp_name()
 
       # enable extraction button
-      shinyjs::enable("name_from_user_poly_1-PN", asis= TRUE)
-      shinyjs::enable("extract_data_1-extract_data", asis = TRUE)
+      if (isTruthy(shp())) {
+        shinyjs::enable("name_from_user_poly_1-PN", asis= TRUE)
+        shinyjs::enable("extract_data_1-extract_data", asis = TRUE)
+        shinyjs::disable("upload_data_1-upload_data", asis = TRUE)
+      }
       
     })
     return(to_return)

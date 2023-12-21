@@ -40,7 +40,6 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif
                      
          tryCatch({ 
            
-           
            # Load wtw data only once
            if (input$extract_data == 1) {
              id_ <- showNotification("... loading data", duration = 0, closeButton=close)
@@ -135,7 +134,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif
              session, 
              user_poly = user_poly_wgs,
              poly_id = "data_poly", 
-             poly_title = shp_name,
+             poly_title = shp_name(),
              shp_name_field = shp_name_field()
             )
            

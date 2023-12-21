@@ -10,7 +10,8 @@
 mod_clear_data_ui <- function(id){
   ns <- NS(id)
   tagList(
-    actionButton(inputId = ns("clear_data"), icon = icon("ban"),  label = "", width = "100%")
+    actionButton(inputId = ns("clear_data"), icon = icon("ban"),  label = "", width = "100%") %>%
+      tooltip("Tooltip message")
   )
 }
     
@@ -52,6 +53,10 @@ mod_clear_data_server <- function(id){
       shinyjs::disable("name_from_user_poly_1-PN", asis= TRUE)
       shinyjs::disable("extract_data_1-extract_data", asis = TRUE)
       shinyjs::disable("download_data_1-download_data", asis= TRUE)
+      shinyjs::disable("metrics_bar_1-impact", asis= TRUE)
+      
+      # enable file input
+      shinyjs::enable("upload_data_1-upload_data", asis = TRUE)
   
     })
  

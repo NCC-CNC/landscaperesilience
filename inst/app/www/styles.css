@@ -102,8 +102,29 @@
 	font-weight: 900;
 }
 
-.progress-bar {
+.progress-bar,
+#extract_data_1-extract_data {
+  background-color: #33862B;
+  color: #000000;
+}
+
+#extract_data_1-extract_data:hover {
+  color: #FFF;
+}
+
+.stats input[type="radio"]:checked {
   background-color: #33862B;
 }
 
+.nav-item .nav-link .active {
+  color: #000 !important;
+}
+
+.nav-item .nav-link  {
+  color: #33862B;
+}
+
+.nav-item .nav-link:hover  {
+  color: #000;
+}
 

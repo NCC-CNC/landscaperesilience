@@ -1,14 +1,44 @@
 // Display attribute table
-export function dataFields() {
+export function dataFields(userName) {
   let fields = [
     {
       name: "OID",
-      alias: "ObjectID",
-      type: "oid",
+      alias: "OID",
+      type: "integer",
     },
     {
-      name: "LANDR",
-      alias: "Resilience Score",
+      name: userName,
+      alias: "Name",
+      type: "string",
+    },
+    {
+      name: "AREA_HA",
+      alias: "Area (ha)",
+      type: "double",
+    },
+    {
+      name: "LANDR_SUM",
+      alias: "Resilience Sum",
+      type: "double",
+    },
+    {
+      name: "LANDR_MU",
+      alias: "Resilience Mean",
+      type: "double",
+    },
+    {
+      name: "LANDR_MIN",
+      alias: "Resilience MIN",
+      type: "double",
+    },
+    {
+      name: "LANDR_MAX",
+      alias: "Resilience MAX",
+      type: "double",
+    },
+    {
+      name: "LANDR_SD",
+      alias: "Resilience SD",
       type: "double",
     },
     {
@@ -79,6 +109,11 @@ export function dataFields() {
     {
       name: "GRASS",
       alias: "Grassland (ha)",
+      type: "double",
+    },
+    {
+      name: "LAKES",
+      alias: "Lakes (ha)",
       type: "double",
     },
     {

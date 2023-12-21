@@ -1,5 +1,11 @@
 // Display attribute table
-export function attributeTbl(geojsonLayer, FeatureTable, view) {
+export function attributeTbl(
+  geojsonLayer,
+  FeatureTable,
+  view,
+  userName,
+  rasterName
+) {
   const featureTable = new FeatureTable({
     view: view,
     layer: geojsonLayer,
@@ -10,7 +16,17 @@ export function attributeTbl(geojsonLayer, FeatureTable, view) {
       columnTemplates: [
         {
           type: "field",
-          fieldName: "LANDR",
+          fieldName: userName,
+          label: userName,
+        },
+        {
+          type: "field",
+          fieldName: "AREA_HA",
+          label: "Area (ha)",
+        },
+        {
+          type: "field",
+          fieldName: "LANDR_SUM",
           label: "Resilience Score",
         },
         {
@@ -42,6 +58,11 @@ export function attributeTbl(geojsonLayer, FeatureTable, view) {
           type: "field",
           fieldName: "GRASS",
           label: "Grassland (ha)",
+        },
+        {
+          type: "field",
+          fieldName: "LAKES",
+          label: "Lakes (ha)",
         },
         {
           type: "field",
@@ -102,6 +123,11 @@ export function attributeTbl(geojsonLayer, FeatureTable, view) {
           type: "field",
           fieldName: "HFI",
           label: "Human Footprint (index)",
+        },
+        {
+          type: "field",
+          fieldName: rasterName,
+          label: rasterName,
         },
       ],
     },

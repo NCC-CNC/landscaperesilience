@@ -55,7 +55,7 @@ empty_landr_hist <- function(landr_hist_df) {
       pointPadding = 0, groupPadding = 0, borderWidth = 0, pointWidth = 10,
       color = "#33862B") %>%
     highcharter::hc_xAxis(
-      title = list(text = "Resilience Scores Distribution"),
+      title = list(text = "Resilience Scores Distribution (neighbourhood)"),
       categories = landr_hist_df$Xlabel,
       tickWidth = 1,     
       tickColor = "#000"

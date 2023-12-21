@@ -29,7 +29,7 @@ mod_download_data_server <- function(id, user_poly_download){
     dir.create(td, recursive = FALSE, showWarnings = FALSE)
     
     # Save shapefile to tmp director
-    sf::write_sf(user_poly_download(), paste0(td, "/impact_metrics.shp"))
+    sf::write_sf(user_poly_download(), paste0(td, "/LandR.shp"))
     
     # Generate total table
     total_tbl <- tot_tbl(user_poly_download())
@@ -38,9 +38,9 @@ mod_download_data_server <- function(id, user_poly_download){
     meta_tbl <- read.csv(system.file("extdata", "metadata.csv", package="landscaperesilience"))
     
     # Save xlsx to tmp director
-    sf::write_sf(user_poly_download(), paste0(td, "/impact_metrics.xlsx"))
-    wb <- loadWorkbook(paste0(td, "/impact_metrics.xlsx"))
-    renameWorksheet(wb, "impact_metrics", "Data")
+    sf::write_sf(user_poly_download(), paste0(td, "/LandR.xlsx"))
+    wb <- loadWorkbook(paste0(td, "/LandR.xlsx"))
+    renameWorksheet(wb, "LandR", "Data")
     
     # add new sheets
     addWorksheet(wb,"Totals")
@@ -55,21 +55,21 @@ mod_download_data_server <- function(id, user_poly_download){
     addStyle(wb, sheet = 2, style = header_style, rows = 1, cols = 1:2, gridExpand = TRUE)
     addStyle(wb, sheet = 3, style = header_style, rows = 1, cols = 1:6, gridExpand = TRUE)
     
-    saveWorkbook(wb, paste0(td, "/impact_metrics.xlsx"), overwrite = TRUE)
+    saveWorkbook(wb, paste0(td, "/LandR.xlsx"), overwrite = TRUE)
     
     # Zip
     files2zip <- list.files(td, full.names = TRUE, recursive = FALSE)
-    utils::zip(zipfile = file.path(td, paste0("impact_metrics_", datetime, ".zip")),
+    utils::zip(zipfile = file.path(td, paste0("LandR_", datetime, ".zip")),
                files = files2zip,
                flags = '-r9Xj') # flag so it does not take parent folders
     
     # set download button behavior
     output$download_data <- shiny::downloadHandler(
       filename <- function() {
-        paste0("impact_metrics_", datetime, ".zip", sep="")
+        paste0("LandR_", datetime, ".zip", sep="")
       },
       content <- function(file) {
-        file.copy(file.path(td, paste0("impact_metrics_", datetime, ".zip")), file)
+        file.copy(file.path(td, paste0("LandR_", datetime, ".zip")), file)
       },
       contentType = "application/zip"
     )    

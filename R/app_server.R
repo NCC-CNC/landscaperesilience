@@ -11,14 +11,26 @@ app_server <- function(input, output, session) {
   options(shiny.maxRequestSize = 1000*1024^2) # 1GB
   
   # Get system environmental variables ----
-  env_data <<- Sys.getenv("DATA_DIRECTORY")
+  env_wtw <<- Sys.getenv("DATA_DIRECTORY")
+  env_esri <<- Sys.getenv("ESRI_API")
   
   ## Assign wtw path globally ----
-  if (nchar(env_data) > 0) {
+  if (nchar(env_wtw) > 0) {
     wtw_path <<- "/appdata/WTW_NAT_DATA_20231027"
   } else {
     wtw_path <<- "C:/Data/PRZ/WTW_DATA/WTW_NAT_DATA_20231027"
   }  
+  
+  ## Assign esri API globally ----
+  if (nchar(env_esri) > 0) {
+    esri_maps_api <<- ""
+  } else {
+    esri_maps_api <<- readLines("C:/API_KEYS/esri_maps_sdk.txt")
+  }  
+  # send api to client
+  session$sendCustomMessage(
+    type = "send-api", message = list(esri_maps_api)
+  )
   
   ## disable buttons ----
   shinyjs::disable("name_from_user_poly_1-PN")
@@ -48,11 +60,12 @@ app_server <- function(input, output, session) {
     wtw_path = wtw_path,
     shp_name_field = shp_name_field$shp_name_field,
     tif_data = tif_data,
-    shp_name = shp$shp_name
+    shp_name = reactive(shp$shp_name)
   )
   
-  # bar chart: impact metrics
+  # sidebar popup ----
   observeEvent(list(extracted$completed_run, input[["metrics_bar_1-impact"]]), {
+    # barplot:impact metrics
     mod_metrics_bar_server(
     id = "metrics_bar_1",
     user_poly = reactive(extracted$user_poly_download),

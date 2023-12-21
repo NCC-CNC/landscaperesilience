@@ -17,12 +17,14 @@ app_ui <- function(request) {
     shinyjs::useShinyjs(), # include shinyjs
     # Navigation bar page
     page_navbar(
-      title = "Landscape Resilience Webtool",
+      title = img(class="logo", src = "www/NCC_Icon_Logo_KO_F.png"),
       underline = FALSE,
+      window_title = "LandR",
       nav_panel(
-        title = NULL,
+        title = tags$div(class="app-title", "Landscape Resilience Webtool"),
         layout_sidebar(
           sidebar = sidebar(id = "Sidebar", width = "25%",
+            # Stats 
             navset_tab(
               nav_panel(
                 title = "Stats",
@@ -32,22 +34,24 @@ app_ui <- function(request) {
                    full_screen = TRUE,
                    card_body(
                      tags$div(id="metricsDiv",
-                              mod_metrics_bar_ui("metrics_bar_1")
-                     )))),                
-                
+                              mod_metrics_bar_ui("metrics_bar_1"))))),                
                 # Histogram popup (landR)
                 tags$div(id="cardDiv2",
                  card(
                    full_screen = TRUE,
                    card_body(
                      tags$div(id="histDiv", 
-                       mod_histogram_popup_ui("histogram_popup_1")      
-               ))))
-            
-               # Close nav panel
-               )
-            )
-          ),
+                       mod_histogram_popup_ui("histogram_popup_1")))))),
+              # Engagement
+                nav_panel(
+                  title = "Engagement"
+                ),
+              # Concepts
+                nav_panel(
+                  title = "Concpets"
+                )
+          # Close side bar  
+          )),
           # ESRI Map
           tags$div(id="viewDiv"),
           # Attribute table
@@ -60,9 +64,13 @@ app_ui <- function(request) {
             card( 
               max_height = 800,
               full_screen = FALSE,
-              card_header("Zonal Statistics"),
+              card_header(
+                bslib::tooltip(
+                span("Zonal Statistics ", bs_icon("info-circle")),
+                 "Tooltip message", placement="right" )
+              ),
               card_body(
-                fluidRow(column(12, p("Input shapefile polygon (.shp, .shx, .dbf and .prj)"))),
+                fluidRow(column(12, p("Upload shapefile polygon (.shp, .shx, .dbf and .prj)"))),
                 fluidRow(
                   column(10, mod_upload_data_ui("upload_data_1")),
                   column(2, mod_clear_data_ui("clear_data_1"))
