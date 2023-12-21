@@ -37,9 +37,9 @@ mod_upload_data_server <- function(id){
       if (is.null(shp())) {
         shinyjs::runjs(
           '
-          $("#upload_data_1-upload_data_progress").css("background-color", "#fc4e2a");
-          $("#upload_data_1-upload_data_progress").text("--Upload Error-- Clear input and try again.");
-          $("#upload_data_1-upload_data_progress").css("font-weight", "bold");
+          $("#upload_data_1-upload_data_progress").css("background-color", "#cb181d");
+          $("#upload_data_1-upload_data_progress").text("Upload Error: Clear input and try again.");
+          $("#upload_data_1-upload_data_progress").css("color", "#fff");
           $("#upload_data_1-upload_data_progress").css("display", "flex");
           $("#upload_data_1-upload_data_progress").css("justify-content", "center");
           ' 
@@ -49,8 +49,8 @@ mod_upload_data_server <- function(id){
         shinyjs::runjs(
           '
           $("#upload_data_1-upload_data_progress").css("background-color", "#33862B");
-          $("#upload_data_1-upload_data_progress").text("--Upload Success-- Run available");
-          $("#upload_data_1-upload_data_progress").css("font-weight", "bold");
+          $("#upload_data_1-upload_data_progress").text("Upload Success: Run available");
+          $("#upload_data_1-upload_data_progress").css("color", "#fff");
           $("#upload_data_1-upload_data_progress").css("display", "flex");
           $("#upload_data_1-upload_data_progress").css("justify-content", "center");
           ' 

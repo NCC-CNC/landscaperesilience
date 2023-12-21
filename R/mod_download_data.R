@@ -45,8 +45,8 @@ mod_download_data_server <- function(id, user_poly_download){
     # add new sheets
     addWorksheet(wb,"Totals")
     writeData(wb,"Totals", total_tbl)
-    addWorksheet(wb,"MetaData")
-    writeData(wb,"MetaData", meta_tbl)
+    addWorksheet(wb,"metadata")
+    writeData(wb,"metadata", meta_tbl)
     
     # Style excel
     modifyBaseFont(wb, fontSize = 11, fontColour = "black", fontName = "Calibri")

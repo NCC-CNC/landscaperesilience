@@ -3,7 +3,6 @@
 export(bin_summary)
 export(empty_landr_hist)
 export(empty_metrics_bar)
-export(esri_api)
 export(landr_hist_bits)
 export(read_shp)
 export(read_wtw_data)
