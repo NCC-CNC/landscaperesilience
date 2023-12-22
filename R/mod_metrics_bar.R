@@ -16,6 +16,7 @@ mod_metrics_bar_ui <- function(id){
         label = NULL,
         choices = c(
           "Landscape Resilience Score" = "LANDR_SUM",
+          "Area (ha)" = "AREA_HA",
           "Species at Risk (count)" = "SAR_RICH",
           "Endemic Species (count)" = "END_RICH",
           "Common Species (count)" = "BIOD_RICH",
@@ -23,7 +24,17 @@ mod_metrics_bar_ui <- function(id){
           "Wetland (ha)" = "WET",
           "Grassland (ha)" = "GRASS",
           "Rivers (km)" = "RIVER",
-          "Shoreline (km)" = "SHORE"
+          "Shoreline (km)" = "SHORE",
+          "Carbon Storage (tonnes)" = "CARBON_S",
+          "Carbon Potential (tonnes per year)" = "CARBON_P",
+          "Connectivity (current density)" = "CONNECT",
+          "Climate Centrality (index)" = "CLIMATE_C",
+          "Climate Extremes (index)" = "CLIMATE_E",
+          "Climate Refugia (index)" = "CLIMATE_R",
+          "Freshwater Provision (ha)" = "FRESHW",
+          "Recreation (ha)" = "REC",
+          "Protected Neighbourhood (ha)" = "PARKS",
+          "Human footprint (index)" = "HFI"
           )
       ),
       highcharter::highchartOutput(outputId = ns("barpopup"), height = "325px")
