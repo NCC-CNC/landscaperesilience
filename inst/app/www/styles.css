@@ -128,3 +128,7 @@
   color: #000;
 }
 
+.dropdown-menu>li.active>a,
+.dropdown-menu>li>a:active {
+  background-color: #33862B;
+}
