@@ -18,7 +18,7 @@ empty_metrics_bar <- function() {
     highcharter::hc_subtitle(text = "No Data") %>%
     highcharter::hc_legend(enabled = FALSE) %>%
     highcharter::hc_tooltip(
-      formatter = JS(
+      formatter = htmlwidgets::JS(
         "function() { return this.x + '<br>' + this.y; }"
       )) 
   return(bar_chart)

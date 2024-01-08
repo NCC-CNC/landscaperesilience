@@ -64,7 +64,7 @@ empty_landr_hist <- function(landr_hist_df) {
     highcharter::hc_yAxis(
       title = list(text = "Area (km2)")) %>%
     highcharter::hc_tooltip(
-      formatter = JS(
+      formatter = htmlwidgets::JS(
         "function() { return 'Score Range: ' + this.x + '<br>Area (km2): ' + this.y; }"
         )) %>%
     highcharter::hc_legend(enabled = FALSE)
