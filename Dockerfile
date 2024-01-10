@@ -1,5 +1,5 @@
 # base image
-FROM rocker/shiny:4.1.0 AS base
+FROM rocker/shiny:4.3.0 AS base
 
 ## remove example apps
 RUN rm -rf /srv/shiny-server/*
@@ -32,7 +32,7 @@ RUN mkdir /renv
 COPY renv.lock /renv/renv.lock
 RUN cd /renv && \
     Rscript -e 'install.packages(c("renv", "remotes"))' && \
-    Rscript -e 'renv::restore(repos = c(CRAN = "https://cloud.r-project.org"))'
+    Rscript -e 'renv::restore()'
 
 ## install app
 RUN mkdir /app

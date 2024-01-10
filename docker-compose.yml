@@ -10,4 +10,10 @@ services:
       - "3838:3838"
     environment:
       # environmental variables defined in ./.env
-       - R_CONFIG_ACTIVE
+      - WTW_NAT_DATA
+      - ESRI_API
+      - R_CONFIG_ACTIVE
+    volumes:
+      - "${WTW_NAT_DATA}:/WTW_NAT_DATA_20240110"
+      - "${ESRI_API}:/API_KEYS/esri_maps_sdk.txt:ro"
+      

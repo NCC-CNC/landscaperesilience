@@ -17,38 +17,19 @@ all: man readme test check spellcheck
 man:
 	R --slave -e "devtools::document()"
 
-## simulate data
-data:
-	R --slave -e "source('inst/scripts/format-ontario-pilot-data.R')"
-	R --slave -e "source('inst/scripts/simulate-data.R')"
-
 ## reubild readme
 readme:
 	R --slave -e "rmarkdown::render('README.Rmd')"
 
-## run tests
-test:
-	R --slave -e "devtools::test()" > test.log 2>&1
-	rm -f tests/testthat/Rplots.pdf
-
-## test examples
-examples:
-	R --slave -e "devtools::run_examples(test = TRUE, run = TRUE);warnings()"  >> examples.log
-	rm -f Rplots.pdf
 
 ## run checks
 check:
-	echo "\n===== R CMD CHECK =====\n" > check.log 2>&1
-	R --slave -e "devtools::check(build_args = '--no-build-vignettes', args = '--no-build-vignettes', run_dont_test = TRUE, vignettes = FALSE)" >> check.log 2>&1
+	devtools::check(args = "--no-multiarch", build_args="--no-multiarch")
 
 ## check docs for spelling mistakes
 spellcheck:
 	echo "\n===== SPELL CHECK =====\n" > spell.log 2>&1
 	R --slave -e "devtools::spell_check()" >> spell.log 2>&1
-
-## install package
-install:
-	R --slave -e "devtools::install_local(getwd(), force = TRUE, upgrade = 'never')"
 
 ## build entire site
 site:
@@ -58,14 +39,6 @@ site:
 ## rebuild update files for site
 quicksite:
 	R --slave -e "pkgdown::build_site(run_dont_run = TRUE, lazy = TRUE)"
-
-# commands to launch app
-## launch local version using system libraries
-debug:
-	R -e "options(golem.app.prod = FALSE); golem::run_dev()"
-
-quick-debug:
-	R -e "options(golem.app.prod = FALSE, quick = TRUE); golem::run_dev()"
 
 ## launch local version inside Docker container
 ## building a temp image for testing, not tagged!

@@ -11,7 +11,7 @@ app_server <- function(input, output, session) {
   options(shiny.maxRequestSize = 1000*1024^2) # 1GB
   
   # Get system environmental variables ----
-  env_wtw <<- Sys.getenv("DATA_DIRECTORY")
+  env_wtw <<- Sys.getenv("WTW_NAT_DATA")
   env_esri <<- Sys.getenv("ESRI_API")
   
   ## Assign wtw path globally ----
@@ -23,7 +23,7 @@ app_server <- function(input, output, session) {
   
   ## Assign esri API globally ----
   if (nchar(env_esri) > 0) {
-    esri_maps_api <<- "/appdata/esri_maps_sdk.txt"
+    esri_maps_api <<- readLines("/API_KEYS/esri_maps_sdk.txt")
   } else {
     esri_maps_api <<- readLines("C:/API_KEYS/esri_maps_sdk.txt")
   }  
