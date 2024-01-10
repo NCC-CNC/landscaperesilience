@@ -16,9 +16,9 @@ app_server <- function(input, output, session) {
   
   ## Assign wtw path globally ----
   if (nchar(env_wtw) > 0) {
-    wtw_path <<- "/appdata/WTW_NAT_DATA_20231027"
+    wtw_path <<- "/WTW_NAT_DATA_20231027"
   } else {
-    wtw_path <<- "C:/Data/PRZ/WTW_DATA/WTW_NAT_DATA_20231027"
+    wtw_path <<- "C:/Data/PRZ/WTW_DATA/WTW_NAT_DATA_20240110"
   }  
   
   ## Assign esri API globally ----
