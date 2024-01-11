@@ -33,4 +33,4 @@ Depends:
     openxlsx (>= 4.2.5.2),
     sf (>= 1.0.14),
     shiny (>= 1.8.0),
-    terra (>= 1.7.55)
+    terra (>= 1.7.65)
