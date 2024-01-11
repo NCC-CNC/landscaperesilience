@@ -14,6 +14,6 @@ services:
       - ESRI_API
       - R_CONFIG_ACTIVE
     volumes:
-      - "${WTW_NAT_DATA}:/WTW_NAT_DATA_20240110"
+      - "${WTW_NAT_DATA}:/WTW_NAT_DATA"
       - "${ESRI_API}:/API_KEYS/esri_maps_sdk.txt:ro"
       
