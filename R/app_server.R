@@ -23,7 +23,7 @@ app_server <- function(input, output, session) {
   
   ## Assign esri API globally ----
   if (nchar(env_esri) > 0) {
-    esri_maps_api <<- readLines("/API_KEYS/esri_maps_sdk.txt")
+    esri_maps_api <<- readLines("/licence/esri_maps_sdk.txt")
   } else {
     esri_maps_api <<- readLines("C:/API_KEYS/esri_maps_sdk.txt")
   }  
