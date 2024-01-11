@@ -1,5 +1,5 @@
 # base image
-FROM rocker/shiny:4.3.0 AS base
+FROM rocker/shiny:4.3.2 AS base
 
 ## remove example apps
 RUN rm -rf /srv/shiny-server/*
@@ -18,10 +18,6 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \
       libgdal-dev \
       libgeos-dev \
       libproj-dev \
-      coinor-libcbc-dev \
-      coinor-libclp-dev \
-      coinor-libsymphony-dev \
-      coinor-libcgl-dev \
       libharfbuzz-dev \
       libfribidi-dev \
       libfontconfig1-dev \
