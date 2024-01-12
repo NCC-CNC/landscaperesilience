@@ -16,16 +16,16 @@ app_server <- function(input, output, session) {
   
   ## Assign wtw path globally ----
   if (nchar(env_wtw) > 0) {
-    wtw_path <<- "/WTW_NAT_DATA"
+    wtw_path <<- "/WTW_NAT_DATA" # path in docker container (production)
   } else {
-    wtw_path <<- "C:/Data/PRZ/WTW_DATA/WTW_NAT_DATA_20240110"
+    wtw_path <<- "C:/Data/PRZ/WTW_DATA/WTW_NAT_DATA_20240110" # path in Dan Wismer local (dev)
   }  
   
   ## Assign esri API globally ----
   if (nchar(env_esri) > 0) {
-    esri_maps_api <<- readLines("/API_KEYS/esri_maps_sdk.txt")
+    esri_maps_api <<- readLines("/license/esri_maps_sdk.txt") # path in docker container (production)
   } else {
-    esri_maps_api <<- readLines("C:/API_KEYS/esri_maps_sdk.txt")
+    esri_maps_api <<- readLines("C:/API_KEYS/esri_maps_sdk.txt") # path in Dan Wismer local (dev)
   }  
   # send api to client
   session$sendCustomMessage(
