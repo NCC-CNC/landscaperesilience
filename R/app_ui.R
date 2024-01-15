@@ -56,9 +56,7 @@ app_ui <- function(request) {
           tags$div(class="spinner"),
           tags$div(id="viewDiv"),
           # Attribute table
-          tags$div(class="tbl-container",
-            tags$div(id="tableDiv")
-          ),
+          tags$div(id="tableDiv"),
           
           # Extraction controls
           tags$div(id="extractPanel",

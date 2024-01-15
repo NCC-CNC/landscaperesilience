@@ -61,16 +61,6 @@ require([
 
   view.ui.add(bgExpand, "top-left");
 
-  // input polygon and extractions
-  const expandContentDiv = document.getElementById("extractPanel");
-  const expand = new Expand({
-    content: expandContentDiv,
-    expanded: true,
-  });
-  view.when(() => {
-    view.ui.add(expand, "top-right");
-  });
-
   // add layers to layer controls
   view.when(() => {
     const layerList = new LayerList({
@@ -78,6 +68,33 @@ require([
     });
     view.ui.add(layerList, "top-left");
   });
+
+  // input polygon and extractions
+  const expandContentDiv = document.getElementById("extractPanel");
+  const expand = new Expand({
+    content: expandContentDiv,
+    collapseTooltip: "Collapse File Upload",
+    expandTooltip: "Expand File Upload",
+    expandIcon: "file",
+    expanded: true,
+  });
+  view.when(() => {
+    view.ui.add(expand, "top-right");
+  });
+
+  // attribute table
+  const expandTblDiv = document.getElementById("tableDiv");
+  const expandTbl = new Expand({
+    content: expandTblDiv,
+    expanded: true,
+    collapseTooltip: "Collapse Attribute Table",
+    expandTooltip: "Expand Attribute Table",
+    expandIcon: "table",
+  });
+  view.when(() => {
+    view.ui.add(expandTbl, "bottom-left");
+  });
+
 
   // map geojson
   Shiny.addCustomMessageHandler("send-geojson", function (message) {
@@ -122,18 +139,18 @@ require([
       });
 
       // remove all elements inside "#tableDiv"
-      var tableDiv = document.getElementById("tableDiv");
+      let tableDiv = document.getElementById("tableDiv");
       while (tableDiv.firstChild) {
-        tableDiv.removeChild(tableDiv.firstChild);
+         tableDiv.removeChild(tableDiv.firstChild);
+         tblDiv.style.height = "0px";
       }
       // create FeatureTable
       attributeTbl(geojsonLayer, FeatureTable, view, userName, rasterName);
 
       // display FeatureTable
-      let tblContainer = document.getElementsByClassName("tbl-container");
-      let viewDiv = document.getElementById("viewDiv");
-      tblContainer[0].classList.add("feature-table");
-      viewDiv.classList.add("map-wth-feature-table");
+      let tblHeight =  (userGeojson.features.length * 25) + 125;
+      tblHeight = (tblHeight > 300) ? '300px' : `${tblHeight}px`;
+      tableDiv.style.height = tblHeight;
     }
     
     // hide spinner
@@ -147,8 +164,7 @@ require([
     map.remove(map.findLayerById("upload_poly"));
     map.remove(map.findLayerById("data_poly"));
     let tableDiv = document.getElementById("tableDiv");
-    let viewDiv = document.getElementById("viewDiv");
     tableDiv.innerHTML = "";
-    viewDiv.classList.remove("map-wth-feature-table");
+    tableDiv.style.height = "0px";
   });
 });
