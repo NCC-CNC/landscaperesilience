@@ -83,7 +83,8 @@ require([
   Shiny.addCustomMessageHandler("send-geojson", function (message) {
     // remove data poly
     map.remove(map.findLayerById("data_poly"));
-
+    
+    // get R server data
     let polyId = message[0];
     let polyTitle = message[1];
     let userGeojson = message[2];
@@ -134,6 +135,11 @@ require([
       tblContainer[0].classList.add("feature-table");
       viewDiv.classList.add("map-wth-feature-table");
     }
+    
+    // hide spinner
+    const spinner = document.querySelector('.spinner');
+    spinner.style.display = 'none'
+    
   });
 
   // clear geojson

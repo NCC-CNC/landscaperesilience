@@ -40,6 +40,12 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif
                      
          tryCatch({ 
            
+           ## add map spinner
+           shinyjs::runjs(
+             "const spinner = document.querySelector('.spinner');
+              spinner.style.display = 'block'"
+           )
+           
            # Load wtw data only once
            if (input$extract_data == 1) {
              id_ <- showNotification("... loading data", duration = 0, closeButton=close)
@@ -154,6 +160,11 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif
            removeNotification(id_)
            showNotification("ERROR!", type = 'err', duration = 5, closeButton=close)
            showNotification(paste0(err), type = 'err', duration = 5, closeButton=close)
+           ## remove map spinner
+           shinyjs::runjs(
+             "const spinner = document.querySelector('.spinner');
+              spinner.style.display = 'none'"
+           )           
          })
        # Close progress bar
        })

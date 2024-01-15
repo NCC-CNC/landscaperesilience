@@ -42,6 +42,8 @@ mod_upload_data_server <- function(id){
           $("#upload_data_1-upload_data_progress").css("color", "#fff");
           $("#upload_data_1-upload_data_progress").css("display", "flex");
           $("#upload_data_1-upload_data_progress").css("justify-content", "center");
+          const spinner = document.querySelector(".spinner");
+          spinner.style.display = "none";
           ' 
         )
         shinyjs::disable("upload_data_1-upload_data", asis = TRUE)
@@ -49,7 +51,7 @@ mod_upload_data_server <- function(id){
         shinyjs::runjs(
           '
           $("#upload_data_1-upload_data_progress").css("background-color", "#33862B");
-          $("#upload_data_1-upload_data_progress").text("Upload Success: Run available");
+          $("#upload_data_1-upload_data_progress").text("Upload Success");
           $("#upload_data_1-upload_data_progress").css("color", "#fff");
           $("#upload_data_1-upload_data_progress").css("display", "flex");
           $("#upload_data_1-upload_data_progress").css("justify-content", "center");
