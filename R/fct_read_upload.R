@@ -14,6 +14,12 @@ read_shp <- function(userFile){
   }
   shp <- reactive({
     if(!is.data.frame(userFile())) return()
+    ## add map spinner
+    shinyjs::runjs(
+     "const spinner = document.querySelector('.spinner');
+      spinner.style.display = 'block'"
+    )
+    ## read as sf
     infiles <- userFile()$datapath
     dir <- unique(dirname(infiles))
     outfiles <- file.path(dir, userFile()$name)

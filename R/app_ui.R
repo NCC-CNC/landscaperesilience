@@ -53,6 +53,7 @@ app_ui <- function(request) {
           # Close side bar  
           )),
           # ESRI Map
+          tags$div(class="spinner"),
           tags$div(id="viewDiv"),
           # Attribute table
           tags$div(class="tbl-container",
