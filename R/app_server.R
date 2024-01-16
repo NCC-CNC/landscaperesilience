@@ -93,7 +93,8 @@ app_server <- function(input, output, session) {
     shinyjs::enable("download_data_1-download_data")
     mod_download_data_server(
       id = "download_data_1",
-      user_poly_download =  reactive(extracted$user_poly_download)
+      user_poly_download =  reactive(extracted$user_poly_download),
+      shp_name = reactive(shp$shp_name)
     )
   })
   

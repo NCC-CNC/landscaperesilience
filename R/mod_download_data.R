@@ -17,9 +17,12 @@ mod_download_data_ui <- function(id){
 #' download_data Server Functions
 #'
 #' @noRd 
-mod_download_data_server <- function(id, user_poly_download){
+mod_download_data_server <- function(id, user_poly_download, shp_name){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
+    
+    # Input polygon name
+    shp_name <- substr(shp_name(), 1, nchar(shp_name()) - 4)
     
     # Time stamp for output folder
     datetime <- format(Sys.time(),"%Y%m%d%H%M%S")
@@ -29,7 +32,7 @@ mod_download_data_server <- function(id, user_poly_download){
     dir.create(td, recursive = FALSE, showWarnings = FALSE)
     
     # Save shapefile to tmp director
-    sf::write_sf(user_poly_download(), paste0(td, "/LandR.shp"))
+    sf::write_sf(user_poly_download(), paste0(td, "/", shp_name, "_LandR.shp"))
     
     # Generate total table
     total_tbl <- tot_tbl(user_poly_download())
@@ -38,9 +41,9 @@ mod_download_data_server <- function(id, user_poly_download){
     meta_tbl <- read.csv(system.file("extdata", "metadata.csv", package="landscaperesilience"))
     
     # Save xlsx to tmp director
-    sf::write_sf(user_poly_download(), paste0(td, "/LandR.xlsx"))
-    wb <- loadWorkbook(paste0(td, "/LandR.xlsx"))
-    renameWorksheet(wb, "LandR", "Data")
+    sf::write_sf(user_poly_download(), paste0(td, "/", shp_name, "_LandR.xlsx"))
+    wb <- loadWorkbook(paste0(td, "/", shp_name, "_LandR.xlsx"))
+    renameWorksheet(wb, paste0(shp_name, "_LandR"), "Data") # rename tab
     
     # add new sheets
     addWorksheet(wb,"Totals")
@@ -55,7 +58,7 @@ mod_download_data_server <- function(id, user_poly_download){
     addStyle(wb, sheet = 2, style = header_style, rows = 1, cols = 1:2, gridExpand = TRUE)
     addStyle(wb, sheet = 3, style = header_style, rows = 1, cols = 1:6, gridExpand = TRUE)
     
-    saveWorkbook(wb, paste0(td, "/LandR.xlsx"), overwrite = TRUE)
+    saveWorkbook(wb, paste0(td, "/", shp_name, "_LandR.xlsx"), overwrite = TRUE)
     
     # Zip
     files2zip <- list.files(td, full.names = TRUE, recursive = FALSE)
@@ -73,8 +76,6 @@ mod_download_data_server <- function(id, user_poly_download){
       },
       contentType = "application/zip"
     )    
-    
- 
   })
 }
     
