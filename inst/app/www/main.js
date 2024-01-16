@@ -60,13 +60,21 @@ require([
   });
 
   view.ui.add(bgExpand, "top-left");
-
+  
   // add layers to layer controls
-  view.when(() => {
-    const layerList = new LayerList({
-      view: view,
-    });
-    view.ui.add(layerList, "top-left");
+  const layerList = new LayerList({
+      view: view
+  })
+  
+  const layerExpand = new Expand({
+    expandIcon: "polygon",
+    view: view,
+    content: layerList,
+    expanded: true
+  });   
+  
+ view.when(() => {
+    view.ui.add(layerExpand, "top-left");
   });
 
   // input polygon and extractions

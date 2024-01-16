@@ -48,7 +48,7 @@ app_ui <- function(request) {
                 ),
               # Concepts
                 nav_panel(
-                  title = "Concpets"
+                  title = "Concepts"
                 )
           # Close side bar  
           )),
