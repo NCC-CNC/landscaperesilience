@@ -37,14 +37,8 @@
   width: 425px;
 }
 
-
-.feature-table {
-  height: 275px;
-  padding: 0px 5px 5px 20px;
-}
-
-.map-wth-feature-table {
-  height: calc(100vh - 335px) !important;
+#tableDiv {
+  width: 70vw !important;
 }
 
 #labelDiv {
