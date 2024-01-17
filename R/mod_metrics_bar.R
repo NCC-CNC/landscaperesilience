@@ -39,7 +39,7 @@ mod_metrics_bar_ui <- function(id){
             ))),
         column(1, 
           span(tooltip(bs_icon("info-circle"), 
-            "Upload shapefile polygon and run zonal statistcs. Select variable to view and compare between all unqiue polygons.")))
+            "Upload shapefile polygon and run zonal statistics. Select variable to view and compare between all unique polygons.")))
       ),
       highcharter::highchartOutput(outputId = ns("barpopup"), height = "325px")
     )

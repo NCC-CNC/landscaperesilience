@@ -14,8 +14,8 @@ mod_histogram_popup_ui <- function(id){
     highcharter::highchartOutput(outputId = ns("histpopup"), height = "325px")),
     column(1,
     span(tooltip(bs_icon("info-circle"), 
-    "Upload shapefile polygon and run zonal statistcs. 
-    Click on a single mapped polygon to view the distribution of Landscape Resiliece Scores."))))
+    "Upload shapefile polygon and run zonal statistics. 
+    Click on a single mapped polygon to view the distribution of Landscape Resilience Scores."))))
   )
 }
     

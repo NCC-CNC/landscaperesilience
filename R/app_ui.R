@@ -67,7 +67,7 @@ app_ui <- function(request) {
               card_header(
                 prompter::add_prompt(
                   span("Zonal Statistics ", bs_icon("info-circle")),
-                  message= "Extracts impact metrics to polygons.", position = "right")
+                  message= "Extract impact metrics to polygons.", position = "right")
               ),
               card_body(
                 fluidRow(column(12, p("Upload shapefile polygon files (.shp, .shx, .dbf and .prj)"))),
