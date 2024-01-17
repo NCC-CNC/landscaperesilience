@@ -12,7 +12,12 @@ mod_name_from_user_poly_ui <- function(id){
   tagList(
     shinyWidgets::pickerInput(
       inputId = ns("PN"), 
-      label = "Select a column that uniquely identifies polygons", 
+      label = span(
+        "Select a column that uniquely identifies polygons", 
+        bs_icon("info-circle")) |> 
+        prompter::add_prompt(
+          message = "This is required for chart, popup and table displays."
+         ),
       width = "100%",
       options = shinyWidgets::pickerOptions(
         noneSelectedText = "NA"),
@@ -34,7 +39,6 @@ mod_name_from_user_poly_server <- function(id, path, user_poly_fields=NULL){
       shinyWidgets::updatePickerInput(
         session = session,
         inputId = "PN",
-        label = "Select a column that uniquely identifies polygons",
         choices = c("Unsure? Use OID", user_poly_fields())
       )
     })
