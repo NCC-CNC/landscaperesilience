@@ -152,3 +152,7 @@
     transform: rotate(359deg);
   }
 }
+
+.esri-legend__layer-caption {
+  display:none;
+}
