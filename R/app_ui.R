@@ -70,7 +70,10 @@ app_ui <- function(request) {
                   message= "Extract impact metrics to polygons.", position = "right")
               ),
               card_body(
-                fluidRow(column(12, p("Upload shapefile polygon files (.shp, .shx, .dbf and .prj)"))),
+                fluidRow(column(12, 
+                prompter::add_prompt(
+                  span("Upload shapefile polygon files (.shp, .shx, .dbf and .prj)", bs_icon("info-circle")),
+                  message = "Polygon displays proceeding successful upload."))),
                 fluidRow(
                   column(10, mod_upload_data_ui("upload_data_1")),
                   column(2, mod_clear_data_ui("clear_data_1"))
