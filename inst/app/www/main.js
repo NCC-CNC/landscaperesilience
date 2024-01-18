@@ -56,7 +56,9 @@ require([
   const bgExpand = new Expand({
     expandIcon: "layers",
     view: view,
-    content: basemapGallery,
+    collapseTooltip: "Collapse Baselayers",
+    expandTooltip: "Expand Baselayers",
+    content: basemapGallery
   });
 
   view.ui.add(bgExpand, "top-left");
@@ -70,6 +72,8 @@ require([
     expandIcon: "polygon",
     view: view,
     content: layerList,
+    collapseTooltip: "Collapse Layer",
+    expandTooltip: "Expand Layer",
     expanded: true
   });   
   
@@ -81,8 +85,8 @@ require([
   const expandContentDiv = document.getElementById("extractPanel");
   const expand = new Expand({
     content: expandContentDiv,
-    collapseTooltip: "Collapse File Upload",
-    expandTooltip: "Expand File Upload",
+    collapseTooltip: "Collapse Zonal Statistics",
+    expandTooltip: "Expand Zonal Statistics",
     expandIcon: "file",
     expanded: true,
   });

@@ -1048,6 +1048,16 @@
       ],
       "Hash": "0d8a15c9d000970ada1ab21405387dee"
     },
+    "prompter": {
+      "Package": "prompter",
+      "Version": "1.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "shiny"
+      ],
+      "Hash": "eb63c3c596c2520fff23e1dd50008e74"
+    },
     "proxy": {
       "Package": "proxy",
       "Version": "0.4-27",

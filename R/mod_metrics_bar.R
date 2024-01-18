@@ -11,31 +11,35 @@ mod_metrics_bar_ui <- function(id){
   ns <- NS(id)
   tagList(
     tagList(
-      selectInput(
-        inputId = ns("impact"),
-        label = NULL,
-        choices = c(
-          "Landscape Resilience Score" = "LANDR_SUM",
-          "Area (ha)" = "AREA_HA",
-          "Species at Risk (count)" = "SAR_RICH",
-          "Endemic Species (count)" = "END_RICH",
-          "Common Species (count)" = "BIOD_RICH",
-          "Forest (ha)" = "FOREST_LC", 
-          "Wetland (ha)" = "WET",
-          "Grassland (ha)" = "GRASS",
-          "Rivers (km)" = "RIVER",
-          "Shoreline (km)" = "SHORE",
-          "Carbon Storage (tonnes)" = "CARBON_S",
-          "Carbon Potential (tonnes per year)" = "CARBON_P",
-          "Connectivity (current density)" = "CONNECT",
-          "Climate Centrality (index)" = "CLIMATE_C",
-          "Climate Extremes (index)" = "CLIMATE_E",
-          "Climate Refugia (index)" = "CLIMATE_R",
-          "Freshwater Provision (ha)" = "FRESHW",
-          "Recreation (ha)" = "REC",
-          "Protected Neighbourhood (ha)" = "PARKS",
-          "Human footprint (index)" = "HFI"
-          )
+      fluidRow(column(11,
+        selectInput(
+          inputId = ns("impact"),
+          label = NULL,
+          choices = c(
+            "Landscape Resilience Score" = "LANDR_SUM",
+            "Area (ha)" = "AREA_HA",
+            "Species at Risk (count)" = "SAR_RICH",
+            "Endemic Species (count)" = "END_RICH",
+            "Common Species (count)" = "BIOD_RICH",
+            "Forest (ha)" = "FOREST_LC", 
+            "Wetland (ha)" = "WET",
+            "Grassland (ha)" = "GRASS",
+            "Rivers (km)" = "RIVER",
+            "Shoreline (km)" = "SHORE",
+            "Carbon Storage (tonnes)" = "CARBON_S",
+            "Carbon Potential (tonnes per year)" = "CARBON_P",
+            "Connectivity (current density)" = "CONNECT",
+            "Climate Centrality (index)" = "CLIMATE_C",
+            "Climate Extremes (index)" = "CLIMATE_E",
+            "Climate Refugia (index)" = "CLIMATE_R",
+            "Freshwater Provision (ha)" = "FRESHW",
+            "Recreation (ha)" = "REC",
+            "Protected Neighbourhood (ha)" = "PARKS",
+            "Human footprint (index)" = "HFI"
+            ))),
+        column(1, 
+          span(tooltip(bs_icon("info-circle"), 
+            "Select variable to view and compare between all unique polygons. Run zonal statistics to enable this chart.")))
       ),
       highcharter::highchartOutput(outputId = ns("barpopup"), height = "325px")
     )

@@ -34,7 +34,8 @@
 }
 
 #extractPanel {
-  width: 425px;
+  width: 430px;
+  overflow-x: hidden;
 }
 
 #tableDiv {
