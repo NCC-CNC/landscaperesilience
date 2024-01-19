@@ -75,14 +75,10 @@
 }
 
 .stats {
-  margin-top: -25px;
+  margin-top: -20px;
   margin-left: 230px;
 }
 
-.invalid-feedback {
-  margin-top: -53px;
-}
-  
 .user-fields {
   margin-top: -15px;
 }
@@ -151,4 +147,8 @@
   100% {
     transform: rotate(359deg);
   }
+}
+
+.esri-legend__layer-caption {
+  display:none;
 }

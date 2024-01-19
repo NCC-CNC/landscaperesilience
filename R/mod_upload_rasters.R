@@ -131,6 +131,8 @@ mod_upload_rasters_server <- function(id){
                    "reserved word"
                  } else if(grepl(paste0("[", gsub("([][|\\\\])", "\\\\\\1", invalid_symbols), "]"), value, perl = TRUE)) {
                    "invalid chars" 
+                 } else if (grepl(" ", value)) {
+                   "no spaces"
                  }
                }
               )

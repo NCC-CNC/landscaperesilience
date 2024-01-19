@@ -28,11 +28,11 @@ export function mapUserGeojson(
   let outline_color;
   let hash_color;
   if (polyId === "upload_poly") {
-    outline_color = "rgba(50, 50, 50, 1)";
-    hash_color = "rgba(200, 200, 200, 1)";
+    outline_color = "rgba(99, 99, 99, 1)";
+    hash_color = "rgba(99, 99, 99, 1)";
   } else {
-    outline_color = "rgba(51, 134, 43, 1)";
-    hash_color = "rgba(51, 134, 43, 0.25)";
+    outline_color = "rgba(0, 0, 0, 1)";
+    hash_color = "rgba(50, 50, 50, 0)";
     map.remove(map.findLayerById("upload_poly"));
   }
 

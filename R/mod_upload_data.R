@@ -29,7 +29,10 @@ mod_upload_data_server <- function(id){
     to_return <- reactiveValues(user_poly=NULL, fields=NULL, path=NULL, shp_name=NULL)
     path <- reactive({input$upload_data})
     shp <- read_shp(path) # fct_read_upload.R 
-    fields <- reactive({ colnames(shp()) })
+    fields <- reactive({ 
+      # filter for numeric or character fields only
+      colnames(shp())[sapply(shp(), function(col) is.numeric(col) || is.character(col))] 
+      })
     
     observeEvent(path(), {
       

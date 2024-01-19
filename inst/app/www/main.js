@@ -14,8 +14,8 @@ require([
   "esri/symbols/SimpleFillSymbol",
   "esri/widgets/Expand",
   "esri/widgets/BasemapGallery",
-  "esri/widgets/Histogram",
-  "esri/popup/content/CustomContent",
+  "esri/layers/TileLayer",
+  "esri/widgets/Legend",
 ], function (
   esriConfig,
   Map,
@@ -26,7 +26,9 @@ require([
   SimpleRenderer,
   SimpleFillSymbol,
   Expand,
-  BasemapGallery
+  BasemapGallery,
+  TileLayer,
+  Legend
 ) {
   // ESRI API
   Shiny.addCustomMessageHandler("send-api", function (message) {
@@ -42,7 +44,7 @@ require([
   // init MapView object
   const view = new MapView({
     map: map,
-    center: [-106.3468, 56.1304], // Longitude, latitude
+    center: [-95, 64], // Longitude, latitude
     zoom: 4, // Zoom level
     container: "viewDiv", // Div element
   });
@@ -53,31 +55,51 @@ require([
     container: document.createElement("div"),
   });
 
+  // add resilience layer
+  let landR = new TileLayer({
+    url: "https://tiles.arcgis.com/tiles/etzrVYxPRxn7Nirj/arcgis/rest/services/LandR_tiles/MapServer",
+    opacity: 0.75,
+    title: "Landscape Resilience",
+    listMode: "hide-children",
+  });
+  map.layers.add(landR);
+
   const bgExpand = new Expand({
     expandIcon: "layers",
     view: view,
     collapseTooltip: "Collapse Baselayers",
     expandTooltip: "Expand Baselayers",
-    content: basemapGallery
+    content: basemapGallery,
   });
 
   view.ui.add(bgExpand, "top-left");
-  
+
   // add layers to layer controls
   const layerList = new LayerList({
-      view: view
-  })
-  
+    view: view,
+    listItemCreatedFunction: (event) => {
+      const item = event.item;
+      if (item.layer.type != "group") {
+        // don't show legend twice
+        item.panel = {
+          content: "legend",
+          open: false,
+          style: "card",
+        };
+      }
+    },
+  });
+
   const layerExpand = new Expand({
     expandIcon: "polygon",
     view: view,
     content: layerList,
     collapseTooltip: "Collapse Layer",
     expandTooltip: "Expand Layer",
-    expanded: true
-  });   
-  
- view.when(() => {
+    expanded: true,
+  });
+
+  view.when(() => {
     view.ui.add(layerExpand, "top-left");
   });
 
@@ -107,12 +129,11 @@ require([
     view.ui.add(expandTbl, "bottom-left");
   });
 
-
   // map geojson
   Shiny.addCustomMessageHandler("send-geojson", function (message) {
     // remove data poly
     map.remove(map.findLayerById("data_poly"));
-    
+
     // get R server data
     let polyId = message[0];
     let polyTitle = message[1];
@@ -152,23 +173,21 @@ require([
 
       // remove all elements inside "#tableDiv"
       let tableDiv = document.getElementById("tableDiv");
-      while (tableDiv.firstChild) {
-         tableDiv.removeChild(tableDiv.firstChild);
-         tblDiv.style.height = "0px";
-      }
+      tableDiv.innerHTML = "";
+      tableDiv.style.height = "0px";
+
       // create FeatureTable
       attributeTbl(geojsonLayer, FeatureTable, view, userName, rasterName);
 
       // display FeatureTable
-      let tblHeight =  (userGeojson.features.length * 25) + 125;
-      tblHeight = (tblHeight > 300) ? '300px' : `${tblHeight}px`;
+      let tblHeight = userGeojson.features.length * 25 + 125;
+      tblHeight = tblHeight > 300 ? "300px" : `${tblHeight}px`;
       tableDiv.style.height = tblHeight;
     }
-    
+
     // hide spinner
-    const spinner = document.querySelector('.spinner');
-    spinner.style.display = 'none'
-    
+    const spinner = document.querySelector(".spinner");
+    spinner.style.display = "none";
   });
 
   // clear geojson
