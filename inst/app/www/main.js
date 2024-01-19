@@ -173,10 +173,9 @@ require([
 
       // remove all elements inside "#tableDiv"
       let tableDiv = document.getElementById("tableDiv");
-      while (tableDiv.firstChild) {
-        tableDiv.removeChild(tableDiv.firstChild);
-        tblDiv.style.height = "0px";
-      }
+      tableDiv.innerHTML = "";
+      tableDiv.style.height = "0px";
+
       // create FeatureTable
       attributeTbl(geojsonLayer, FeatureTable, view, userName, rasterName);
 
