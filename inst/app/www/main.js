@@ -16,6 +16,7 @@ require([
   "esri/widgets/BasemapGallery",
   "esri/layers/TileLayer",
   "esri/widgets/Legend",
+  "esri/core/reactiveUtils",
 ], function (
   esriConfig,
   Map,
@@ -28,7 +29,8 @@ require([
   Expand,
   BasemapGallery,
   TileLayer,
-  Legend
+  Legend,
+  reactiveUtils
 ) {
   // ESRI API
   Shiny.addCustomMessageHandler("send-api", function (message) {
@@ -177,7 +179,13 @@ require([
       tableDiv.style.height = "0px";
 
       // create FeatureTable
-      attributeTbl(geojsonLayer, FeatureTable, view, userName, rasterName);
+      featureTable = attributeTbl(
+        geojsonLayer,
+        FeatureTable,
+        view,
+        userName,
+        rasterName
+      );
 
       // display FeatureTable
       let tblHeight = userGeojson.features.length * 25 + 125;
@@ -189,6 +197,22 @@ require([
     const spinner = document.querySelector(".spinner");
     spinner.style.display = "none";
   });
+
+  // Sync pop-up with table
+  let featureTable, selectedFeature, id;
+  reactiveUtils.watch(
+    () => view.popup.viewModel?.active,
+    () => {
+      selectedFeature = view.popup.selectedFeature;
+      if (selectedFeature !== null && view.popup.visible !== false) {
+        featureTable.highlightIds.removeAll();
+        featureTable.highlightIds.add(
+          view.popup.selectedFeature.attributes.__OBJECTID
+        );
+        id = selectedFeature.getObjectId();
+      }
+    }
+  );
 
   // clear geojson
   Shiny.addCustomMessageHandler("send-clear", function (message) {
