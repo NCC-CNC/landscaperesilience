@@ -151,3 +151,7 @@
 .esri-legend__layer-caption {
   display:none;
 }
+
+.bslib-full-screen-exit {
+  margin-right: 75px;
+}
