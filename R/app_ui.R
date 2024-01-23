@@ -24,7 +24,7 @@ app_ui <- function(request) {
       nav_panel(
         title = tags$div(class="app-title", "Landscape Resilience Webtool"),
         layout_sidebar(
-          sidebar = sidebar(id = "Sidebar", width = "25%",
+          sidebar = sidebar(id = "Sidebar", width = "27.5%",
             # Stats 
             navset_tab(
               nav_panel(
@@ -33,6 +33,7 @@ app_ui <- function(request) {
                 tags$div(id="cardDiv1",
                  card(
                    full_screen = TRUE,
+                   fill = TRUE,
                    card_body(
                      tags$div(id="metricsDiv",
                               mod_metrics_bar_ui("metrics_bar_1"))))),                
