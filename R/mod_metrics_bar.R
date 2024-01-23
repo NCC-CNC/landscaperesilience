@@ -72,7 +72,7 @@ mod_metrics_bar_server <- function(id, user_poly = NULL, metric = NULL, shp_name
           type= "bar",
           data = df[[metric]][index],
           pointPadding = 0, groupPadding = 0, borderWidth = 0, pointWidth = 10,
-          color = "#7A59FC",
+          color = "#33862B",
           mapping = highcharter::hcaes(x = .df[shp_name_field()], y = .df[metric])
         ) %>%
         highcharter::hcpxy_update(
