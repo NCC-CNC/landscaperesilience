@@ -19,7 +19,7 @@ empty_metrics_bar <- function() {
     highcharter::hc_legend(enabled = FALSE) %>%
     highcharter::hc_tooltip(
       formatter = htmlwidgets::JS(
-        "function() { return this.x + '<br>' + this.y; }"
+        "function() { return this.x + '<br>' + this.y.toLocaleString(); }"
       )) 
   return(bar_chart)
 }
