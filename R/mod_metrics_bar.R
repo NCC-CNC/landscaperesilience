@@ -62,22 +62,22 @@ mod_metrics_bar_server <- function(id, user_poly = NULL, metric = NULL, shp_name
 
       df <- user_poly() %>%
         st_drop_geometry() 
-
-      x_names <- unname(unlist(df[shp_name_field()]))
+      
+      index <- order(df[[metric]], decreasing = TRUE)
       
       # Update metrics bar  
       highcharter::highchartProxy("metrics_bar_1-barpopup") %>%
         highcharter::hcpxy_remove_series(all=TRUE) %>%
         highcharter::hcpxy_add_series(
           type= "bar",
-          data = df[[metric]],
+          data = df[[metric]][index],
           pointPadding = 0, groupPadding = 0, borderWidth = 0, pointWidth = 10,
           color = "#7A59FC",
           mapping = highcharter::hcaes(x = .df[shp_name_field()], y = .df[metric])
         ) %>%
         highcharter::hcpxy_update(
           xAxis = list(
-            categories = x_names,
+            categories = df[[shp_name_field()]][index], # user column
             title = ""),
           subtitle = list(
             text=""
