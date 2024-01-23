@@ -57,7 +57,7 @@ mod_histogram_popup_server <- function(id, landr_tbl, oid = NULL, user_poly = NU
           type= "column",
           data = landr_df,
           pointPadding = 0, groupPadding = 0, borderWidth = 0, pointWidth = 10,
-          color = "#33862B",
+          color = "#82CC2E",
           mapping = highcharter::hcaes(x = Xlabel, y = Count)
           ) %>%
         highcharter::hcpxy_update(
