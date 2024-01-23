@@ -2,6 +2,7 @@ import { mapUserGeojson } from "./map_geojson.js";
 import { attributeTbl } from "./attribute_table.js";
 import { dataPopup } from "./popups.js";
 import { dataFields } from "./define_fields.js";
+import { fullScreenPlots } from "./fullscreen_plots.js";
 
 require([
   "esri/config",
@@ -222,4 +223,7 @@ require([
     tableDiv.innerHTML = "";
     tableDiv.style.height = "0px";
   });
+
+  // full screen plots
+  fullScreenPlots();
 });

@@ -51,7 +51,6 @@
 
 #cardDiv1 {
   padding-top: 15px;
-  width: 430px;
 }
 
 .btn.btn-default.btn-file,
@@ -151,4 +150,8 @@
 
 .esri-legend__layer-caption {
   display:none;
+}
+
+.bslib-full-screen-exit {
+  margin-right: 75px;
 }
