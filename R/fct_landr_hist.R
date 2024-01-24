@@ -23,7 +23,7 @@ landr_hist_bits <- function(landr_tbl=NULL, oid=NULL) {
   mean_value <- mean(landr_values) %>% round(2)
   
   # build histogram table info
-  bins <- seq(0, 4, by = 0.2) 
+  bins <- seq(0, 3.8, by = 0.2) 
   bin_counts <- cut(landr_values, bins, right = FALSE) 
   df <- data.frame(table(bin_counts))
   df$Bins <- as.character(df$bin_counts)
