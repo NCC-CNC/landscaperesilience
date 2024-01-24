@@ -11,7 +11,7 @@
 read_wtw_data <- function(wtw_path) {
   
   # Get Landscape Resilience Baselayer----
-  landr <-rast(file.path(wtw_path, "resilience", "LRBL.tif"))
+  landr <-rast(file.path(wtw_path, "resilience", "LandR.tif"))
   names(landr) <- "LANDR"
     
   # Get NCC PU
