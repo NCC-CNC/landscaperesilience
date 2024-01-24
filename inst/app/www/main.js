@@ -60,8 +60,8 @@ require([
 
   // add resilience layer
   let landR = new TileLayer({
-    url: "https://tiles.arcgis.com/tiles/etzrVYxPRxn7Nirj/arcgis/rest/services/LandR_tiles/MapServer",
-    opacity: 0.75,
+    url: "https://tiles.arcgis.com/tiles/etzrVYxPRxn7Nirj/arcgis/rest/services/LandR_20240124/MapServer",
+    opacity: 0.55,
     title: "Landscape Resilience",
     listMode: "hide-children",
   });
