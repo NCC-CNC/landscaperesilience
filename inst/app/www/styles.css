@@ -39,7 +39,7 @@
 }
 
 #tableDiv {
-  width: 70vw !important;
+  width: calc(70vw - 55px) !important;
 }
 
 #labelDiv {
