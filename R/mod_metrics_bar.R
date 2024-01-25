@@ -24,6 +24,7 @@ mod_metrics_bar_ui <- function(id){
             "Forest (ha)" = "FOREST_LC", 
             "Wetland (ha)" = "WET",
             "Grassland (ha)" = "GRASS",
+            "Lakes (ha)" = "LAKES",
             "Rivers (km)" = "RIVER",
             "Shoreline (km)" = "SHORE",
             "Carbon Storage (tonnes)" = "CARBON_S",

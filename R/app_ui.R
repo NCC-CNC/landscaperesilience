@@ -46,11 +46,15 @@ app_ui <- function(request) {
                        mod_histogram_popup_ui("histogram_popup_1")))))),
               # Engagement
                 nav_panel(
-                  title = "Engagement"
+                  title = "Engagement",
+                  br(),
+                  p("Under Construction", icon("hammer"))
                 ),
               # Concepts
                 nav_panel(
-                  title = "Concepts"
+                  title = "Concepts",
+                  br(),
+                  p("Under Construction", icon("hammer"))
                 )
           # Close side bar  
           )),
