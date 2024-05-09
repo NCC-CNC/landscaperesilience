@@ -12,12 +12,14 @@ mod_name_from_user_poly_ui <- function(id){
   tagList(
     shinyWidgets::pickerInput(
       inputId = ns("PN"), 
-      label = span(
-        "Select a column that uniquely identifies polygons", 
-        bs_icon("info-circle")) |> 
-        prompter::add_prompt(
-          message = "This is required for chart, popup and table displays."
-         ),
+      label = tooltip(
+        trigger = list(
+          "Select a column that uniquely identifies polygons",
+          bs_icon("info-circle")
+        ),
+        "This is required for chart, popup and table displays.",
+        placement = "right"
+      ),
       width = "100%",
       options = shinyWidgets::pickerOptions(
         noneSelectedText = "NA"),

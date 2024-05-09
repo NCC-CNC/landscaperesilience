@@ -10,9 +10,9 @@
 mod_clear_data_ui <- function(id){
   ns <- NS(id)
   tagList(
-    prompter::add_prompt(
+    tooltip(
       actionButton(inputId = ns("clear_data"), icon = icon("ban"),  label = "", width = "75%"),
-      message = "Clear upload"
+      "Clear upload", placement = "bottom"
     )
   )
 }
