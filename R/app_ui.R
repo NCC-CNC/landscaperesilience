@@ -15,7 +15,6 @@ app_ui <- function(request) {
       tags$link(rel="stylesheet", type="text/css", href="www/styles.css"),
     ),    
     shinyjs::useShinyjs(), # include shinyjs
-    prompter::use_prompt(), # include prompter (using for tool tips)
     # Navigation bar page
     page_navbar(
       title = img(class="logo", src = "www/NCC_Icon_Logo_KO_F.png"),
