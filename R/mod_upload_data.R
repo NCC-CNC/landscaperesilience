@@ -10,12 +10,21 @@
 mod_upload_data_ui <- function(id){
   ns <- NS(id)
   tagList(
+    tooltip(
     fileInput(
       inputId = ns("upload_data"), 
-      label = NULL, 
+      label = tooltip(
+        trigger = list(
+          "Upload shapefile polygon",
+          bs_icon("info-circle")
+        ),
+        "The polygon displays proceeding successful upload",
+        placement = "top"
+      ), 
       multiple = TRUE,
       accept = c(".shp", ".shx", ".dbf", ".prj", ".sbn", ".sbx", ".cpg"),
-      width = "100%")
+      width = "100%"),
+    ".shp, .shx, .dbf and .prj files are required.")
   )
 }
     

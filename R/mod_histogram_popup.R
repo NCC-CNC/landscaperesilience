@@ -11,7 +11,7 @@ mod_histogram_popup_ui <- function(id){
   ns <- NS(id)
   tagList(
     fluidRow(column(11,
-    highcharter::highchartOutput(outputId = ns("histpopup"), height = "calc(50vh - 155px)")),
+    highcharter::highchartOutput(outputId = ns("histpopup"), height = "calc(50vh - 149px)")),
     column(1,
     span(tooltip(bs_icon("info-circle"), 
     "Click on a single mapped polygon to view the distribution of Landscape Resilience Scores.

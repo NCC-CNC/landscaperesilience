@@ -14,9 +14,10 @@ mod_upload_rasters_ui <- function(id){
       column(2,
       actionButton(inputId = ns("add_raster_btn"), label = NULL,  icon=icon("add"), width = "100%")),
       column(10, class = "add_raster_p",
-      prompter::add_prompt(
+      tooltip(
         span("Add regional .tifs to be included (optional)",  bs_icon("info-circle")),
-        message = "Experimental feature. "))),
+        "Experimental feature.", placement = "top")
+      )),
     fluidRow(column(12, id="rasterDiv")))
 }
     
@@ -51,39 +52,41 @@ mod_upload_rasters_server <- function(id){
         br(),
         fluidRow(
           column(7,
+          tooltip(
           fileInput(
             inputId = ns(paste0("tif_", tif_id)), 
             label = NULL, 
             multiple = FALSE,
             accept = ".tif",
-            width = "100%")),
-          column(3,
-          prompter::add_prompt(
+            width = "100%"),
+          "Upload a prepped .tif raster")),
+          column(4,
+          tooltip(
           textInput(
             inputId = ns(paste0("tif_name_", tif_id)), 
             label = NULL, 
             placeholder = "[NAME]", 
             value = NULL, 
             width = "100%"),
-          message = "Provide short name")),
-          column(2, class = "remove-raster-btn",
-          prompter::add_prompt(       
+          "Provide short name", placement = "top")),
+          column(1, class = "remove-raster-btn",
+          tooltip(       
           actionButton(
             inputId = ns(paste0("remove_tif_", tif_id)), 
             icon = icon("ban"),  
             label = NULL, 
             width = "100%"),
-          message = "Clear data"))
+          "Clear data", placement = "top"))
           ),
         fluidRow(
           column(7),
           column(5, class="stats",
-         prompter::add_prompt(         
+         tooltip(         
          radioButtons(
            inputId = ns(paste0("tif_stat_", tif_id)), 
            label = NULL, choices = c("sum","max"), 
            inline = TRUE),
-         message = "Select statistic")))
+         "Select statistic", placement = "left")))
         )
       
       # insert div

@@ -70,16 +70,15 @@ app_ui <- function(request) {
               max_height = 800,
               full_screen = FALSE,
               card_header(
-                prompter::add_prompt(
-                  span("Zonal Statistics ", bs_icon("info-circle")),
-                  message= "Extract impact metrics to polygons.", position = "right")
+                "Zonal Statistics",
+                tooltip(
+                  bs_icon("info-circle"),
+                  "Extract impact metrics to polygons.",
+                  placement = "right"
+                )
               ),
               card_body(
-                fluidRow(column(12, 
-                prompter::add_prompt(
-                  span("Upload shapefile polygon files (.shp, .shx, .dbf and .prj)", bs_icon("info-circle")),
-                  message = "Polygon displays proceeding successful upload."))),
-                fluidRow(
+                fluidRow(class="shp-upload-row",
                   column(10, mod_upload_data_ui("upload_data_1")),
                   column(2, mod_clear_data_ui("clear_data_1"))
                   ),

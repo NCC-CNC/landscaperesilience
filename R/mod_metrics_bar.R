@@ -42,7 +42,7 @@ mod_metrics_bar_ui <- function(id){
           span(tooltip(bs_icon("info-circle"), 
             "Select variable to view and compare between all unique polygons. Run zonal statistics to enable this chart.")))
       ),
-      highcharter::highchartOutput(outputId = ns("barpopup"), height = "calc(50vh - 155px)")
+      highcharter::highchartOutput(outputId = ns("barpopup"), height = "calc(50vh - 149px)")
     )
   )
 }

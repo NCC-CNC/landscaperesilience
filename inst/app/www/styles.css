@@ -16,7 +16,6 @@
   height: 40px;
 }
 
-
 .app-title {
   color: #fff !important;
   font-size: 16px;
@@ -53,6 +52,7 @@
   padding-top: 15px;
 }
 
+/* overwrite esri padding styles on exapnd widget */
 .btn.btn-default.btn-file,
 .form-control,
 #clear_data_1-clear_data,
@@ -62,11 +62,11 @@
   padding: 5px;
 }
 
-.add_raster_control .row > *,
-.extract-download .row  {
- padding-left: 5px;
- padding-right: 5px;
+/* overwrite esri padding styles on exapnd widget */
+.remove-raster-btn .btn {
+  padding-right: 10px;
 }
+
 
 .add_raster_p {
   display: flex;
@@ -154,4 +154,24 @@
 
 .bslib-full-screen-exit {
   margin-right: 75px;
+}
+
+/* bslib 0.7.0 added gaps of 1 rem between elements */
+div.tab-pane[data-value="Stats"] {
+  gap: 0px;
+}
+
+/* bslib 0.7.0 added margin-bottoms of 1.5 rem */
+#cardDiv2 > div {
+  margin-bottom: 0px !important;
+}
+
+/* align fileinput and clear button on same row */
+.shp-upload-row {
+  display: flex;
+  align-items: center;
+}
+
+#clear_data_1-clear_data {
+  margin-top: -6px;
 }
