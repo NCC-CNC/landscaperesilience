@@ -167,10 +167,11 @@ require([
       view.on("click", (event) => {
         view.hitTest(event).then(({ results }) => {
           let polyOID = results[0].graphic.attributes.OID;
+          let attr = results[0].graphic.attributes;
           popupClick += 1;
           Shiny.setInputValue("popupClick", popupClick);
           Shiny.setInputValue("polyOID", polyOID);
-          geojsonLayer.popupTemplate = dataPopup(userName);
+          geojsonLayer.popupTemplate = dataPopup(userName, attr);
         });
       });
 

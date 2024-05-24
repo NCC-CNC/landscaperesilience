@@ -10,148 +10,77 @@
 
 read_wtw_data <- function(wtw_path) {
   
-  # Get Landscape Resilience Baselayer----
+  # Read-in normalized variables, file paths
+  lr_ready <- list.files(
+    path = file.path(wtw_path, "resilience", "LR_READY"), 
+    pattern = ".tif$", 
+    full.names = TRUE
+  )
+  
+  # Read-in raw variables, file paths
+  lr_raw <- list.files(
+    path = file.path(wtw_path, "resilience", "LR_RAW"),
+    pattern = ".tif$", 
+    full.names = TRUE
+  )  
+  
+  # Read-in variables as terra::rast
+  lr_ready <- lapply(lr_ready, rast)
+  lr_raw <- lapply(lr_raw, rast)
+  
+  # Get Landscape Resilience
   landr <-rast(file.path(wtw_path, "resilience", "LandR.tif"))
   names(landr) <- "LANDR"
     
-  # Get NCC PU
-  pu <- rast(file.path(wtw_path, "nat_pu", "NCC_1KM_PU.tif"))
-  pu[pu==1] <- 0
-  
-  # Get Biodiversity Data ----
-  ## key biodiversity areas
-  kba <- rast(file.path(wtw_path, "biodiversity", "KBA.tif"))
-  names(kba) <-"KBA"
-  
-  ## critical habitat
-  ch <- rast(file.path(wtw_path, "biodiversity", "ECCC_CH_ALL_HA_SUM.tif"))
-  names(ch) <-"CH_ECCC"
-  
-  ## goals
-  ### biodiversity species goal
-  biod_goal <- rast(file.path(wtw_path, "biodiversity", "goals", "BOID_SUM_GOAL.tif"))
-  names(biod_goal) <- "BIOD_GOAL"
-  
-  ### endemic species goal
-  end_goal <- rast(file.path(wtw_path, "biodiversity", "goals", "NSC_END_SUM_GOAL.tif"))
-  names(end_goal) <- "END_GOAL"
-  
-  ### species at risk goal
-  sar_goal <- rast(file.path(wtw_path, "biodiversity", "goals", "ECCC_SAR_SUM_GOAL.tif"))
-  names(sar_goal) <- "SAR_GOAL"
-  
-  ## richness
-  ### biodiversity species richness
-  biod_rich <- rast(file.path(wtw_path, "biodiversity", "richness", "BOID_COUNT.tif"))
-  names(biod_rich) <- "BIOD_RICH"
-  
-  ### endemic species richness
-  end_rich <- rast(file.path(wtw_path, "biodiversity", "richness", "NSC_END_COUNT.tif"))
-  names(end_rich) <- "END_RICH"
-  
-  ### species at risk richness
-  sar_rich <- rast(file.path(wtw_path, "biodiversity", "richness", "ECCC_SAR_COUNT.tif"))
-  names(sar_rich) <- "SAR_RICH"
-  
-  # Get Carbon Data ----
-  ## carbon storage
-  carbon_s <- rast(file.path(wtw_path, "carbon", "Carbon_Mitchell_2021_t.tif"))
-  names(carbon_s) <- "CARBON_S"
-  
-  ## carbon potential
-  carbon_p <- rast(file.path(wtw_path, "carbon", "Carbon_Potential_NFI_2011_CO2e_t_year.tif"))
-  names(carbon_p) <- "CARBON_P"
-  
-  # Get Connectivity Data ----
-  ## connectivity
-  connect <- rast(file.path(wtw_path, "connectivity", "Connectivity_Pither_Current_Density.tif"))
-  names(connect) <- "CONNECT"
-  
-  # Get Climate Data ----
-  ## centrality
-  climate_c <- rast(file.path(wtw_path, "climate", "Climate_FwdShortestPath_2080_RCP85.tif"))
-  names(climate_c) <- "CLIMATE_C"
-  
-  ## extremes
-  climate_e <- rast(file.path(wtw_path, "climate", "Climate_LaSorte_ExtremeHeatEvents.tif"))
-  names(climate_e) <- "CLIMATE_E"
-  
-  ## refugia
-  climate_r <- rast(file.path(wtw_path, "climate", "Climate_Refugia_2080_RCP85.tif"))
-  names(climate_r) <- "CLIMATE_R"
-  
-  # Get Ecosystem Services Data ----
-  ## freshwater provision
-  fwp <- rast(file.path(wtw_path, "eservices", "water_provision_2a_norm.tif"))
-  names(fwp) <- "FRESHW"
-  
-  ## recreation
-  rec <- rast(file.path(wtw_path, "eservices", "rec_pro_1a_norm.tif"))
-  names(rec) <- "REC"
-  
-  # Get Habitat Data ----
-  ## forest land cover
-  forest <- rast(file.path(wtw_path, "habitat", "FOREST_LC_COMPOSITE_1KM.tif"))
-  names(forest) <- "FOREST_LC"
-  
-  ## grassland
-  grass <- rast(file.path(wtw_path, "habitat", "Grassland_AAFC_LUTS_Total_Percent.tif"))
-  names(grass) <- "GRASS"
-  
-  ## wetland
-  wet <- rast(file.path(wtw_path, "habitat", "Wetland_comb_proj_diss_90m_Arc.tif"))
-  wet <- round(wet,2) # original data has a min of 0.00111111,
-  names(wet) <- "WET"
-  
-  ## lakes
-  lakes <- rast(file.path(wtw_path, "habitat", "Lakes_CanVec_50k_ha.tif"))
-  names(lakes) <- "LAKES"
-
-  ## rivers
-  river <- rast(file.path(wtw_path, "habitat", "grid_1km_water_linear_flow_length_1km.tif"))
-  river <- round(river, 2)
-  river[river > 50] <- 50 # truncate to 3rd Q
-  names(river) <- "RIVER"
-  
-  ## shoreline
-  shore <- rast(file.path(wtw_path, "habitat", "Shoreline.tif"))
-  names(shore) <- "SHORE"
-  
-  # Get Protection Data ----
-  ## existing conservation
-  parks <- rast(file.path(wtw_path, "protection", "CPCAD_NCC_FS_CA_HA.tif"))
-  terra::NAflag(parks) <- 128
-  names(parks) <- "PARKS"
-  
-  # Get Threat Data ----
-  ## human footprint index
-  hfi <- rast(file.path(wtw_path, "threats", "CDN_HF_cum_threat_20221031_NoData.tif"))
-  names(hfi) <- "HFI"
-  
   # Create named list
-  variables <- list(
-    landr = list(theme=NULL, name="Landscape Resilience", shp_name="LANDR", layer=landr, unit="score", fun="custom"),
-    sar = list(theme="Biodiversity", name="Species at Risk", shp_name="SAR_RICH" , layer=sar_rich, unit="count", fun="max"),
-    end = list(theme="Biodiversity", name="Endemic Species", shp_name="END_RICH", layer=end_rich, unit="count", fun="max"),
-    biod = list(theme="Biodiversity", name="Common Species", shp_name="BIOD_RICH", layer=biod_rich, unit="count", fun="max"),
-    carbon_s = list(theme="Carbon", name="Carbon Storage", shp_name="CARBON_S", layer=carbon_s, unit="tonnes", fun="sum"),
-    carbon_p = list(theme="Carbon", name="Carbon Potential", shp_name="CARBON_P", layer=carbon_p, unit="tonnes/yr", fun="sum"),
-    connect = list(theme="Connectivity", name="Connectivity", shp_name="CONNECT", layer=connect, unit="current density", fun="sum"),
-    climate_c = list(theme="Climate", name="Climate Forward Shortest-Path Centrality", shp_name="CLIMATE_C", layer=climate_c, unit="index", fun="sum"),
-    climate_e = list(theme="Climate/Threat", name="Climate Extreme Heat Events", shp_name="CLIMATE_E", layer=climate_e, unit="index", fun="sum"),
-    climate_r = list(theme="Climate", name="Climate Refugia",shp_name="CLIMATE_R", layer=climate_r, shp_name="CLIMATE_R",  unit="index", fun="sum"),
-    fwp = list(theme="eServices", name="Freshwater Provision", shp_name="FRESHW", layer=fwp, unit="ha", fun="sum"),
-    rec = list(theme="eServices", name="Recreation", layer=rec, shp_name="REC", unit="ha", fun="sum"),
-    forest = list(theme="Habitat", name="Forest", layer=forest, shp_name="FOREST_LC", unit="ha", fun="sum"),
-    grass = list(theme="Habitat", name="Grassland", layer=grass, shp_name="GRASS",  unit="ha", fun="sum"),
-    wet = list(theme="Habitat", name="Wetland", layer=wet, shp_name="WET",  unit="ha", fun="sum"),
-    lakes = list(theme="Habitat", name="Lakes", layer=lakes, shp_name="LAKES", unit="ha", fun="sum"),
-    river = list(theme="Habitat", name="Rivers", layer=river, shp_name="RIVER", unit="km", fun="sum"),
-    shore = list(theme="Habitat", name="Shoreline", layer=shore, shp_name="SHORE",  unit="km", fun="sum"),
-    parks = list(theme="Protection", name="CPCAD and NCC", layer=parks, shp_name="PARKS", unit="ha", fun="sum"),
-    hfi = list(theme="Threat", name="Human Footprint Index", layer=hfi, shp_name="HFI", unit="index", fun="sum")
-  )
+  lr_ready <- list(
+    biod_goal = list(layer=lr_ready[[1]], shp_name="nBIOD_GOAL", fun="sum", name="Common Species Goal"),
+    biod_rich = list(layer=lr_ready[[2]], shp_name="nBIOD_RICH", fun="sum", name="Common Species Richness"),
+           ch = list(layer=lr_ready[[3]], shp_name="nCH",        fun="sum", name="Critical Habitat"),
+    climate_c = list(layer=lr_ready[[4]], shp_name="nCLIMATE_C", fun="sum", name="Climate Centrality"),
+    climate_e = list(layer=lr_ready[[5]], shp_name="nCLIMATE_E", fun="sum", name="Climate Extremes"),
+    climate_r = list(layer=lr_ready[[6]], shp_name="nCLIMATE_R", fun="sum", name="Climate Refugia"),
+      connect = list(layer=lr_ready[[7]], shp_name="nCONNECT",   fun="sum", name="Connectivity"),
+     end_goal = list(layer=lr_ready[[8]], shp_name="nEND_GOAL",  fun="sum", name="Endemic Goal"),
+     end_rich = list(layer=lr_ready[[9]], shp_name="nEND_RICH",  fun="sum", name="Endemic Richness"),
+       forest = list(layer=lr_ready[[10]], shp_name="nFOREST",   fun="sum", name="Common Species Goal"),
+        grass = list(layer=lr_ready[[11]], shp_name="nGRASS",    fun="sum", name="Grassland"),
+          hfi = list(layer=lr_ready[[12]], shp_name="nHFI",      fun="sum", name="Human Footprint Index"),
+        river = list(layer=lr_ready[[13]], shp_name="nRIVER",    fun="sum", name="River"),
+     sar_goal = list(layer=lr_ready[[14]], shp_name="nSAR_GOAL", fun="sum", name="Species at Risk Goal"),
+     sar_rich = list(layer=lr_ready[[15]], shp_name="nSAR_RICH", fun="sum", name="Species at Risk Richness"),
+        shore = list(layer=lr_ready[[16]], shp_name="nSHORE",    fun="sum", name="Shoreline"),
+          wet = list(layer=lr_ready[[17]], shp_name="nWET",      fun="sum", name="Wetland")
+    )
   
+  lr_raw <- list(
+    biod_rich = list(layer=lr_raw[[1]], shp_name="BIOD_RICH", fun="max", name="Common Species"),
+     carbon_p = list(layer=lr_raw[[2]], shp_name="CARBON_P",  fun="sum", name="Carbon Potential"),
+     carbon_s = list(layer=lr_raw[[3]], shp_name="CARBON_S",  fun="sum", name="Carbon Storage"),
+    climate_c = list(layer=lr_raw[[4]], shp_name="CLIMATE_C", fun="sum", name="Climate Centrality"),
+    climate_e = list(layer=lr_raw[[5]], shp_name="CLIMATE_E", fun="sum", name="Climate Extremes"),
+    climate_r = list(layer=lr_raw[[6]], shp_name="CLIMATE_R", fun="sum", name="Climate Refugia"),
+      connect = list(layer=lr_raw[[7]], shp_name="CONNECT",   fun="sum", name="Connectivity"),
+     end_rich = list(layer=lr_raw[[8]], shp_name="END_RICH",  fun="max", name="Endemic Richness"),
+       forest = list(layer=lr_raw[[9]], shp_name="FOREST",    fun="sum", name="Forest"),
+       freshw = list(layer=lr_raw[[10]], shp_name="FRESHW",   fun="sum", name="Freshwater Provision"),
+        grass = list(layer=lr_raw[[11]], shp_name="GRASS",    fun="sum", name="Grassland"),
+          hfi = list(layer=lr_raw[[12]], shp_name="HFI",      fun="sum", name="Human Footprint"),
+        lakes = list(layer=lr_raw[[13]], shp_name="LAKES",    fun="sum", name="Lakes"),
+        parks = list(layer=lr_raw[[14]], shp_name="PARKS",    fun="sum", name="Protected Areas"),
+          rec = list(layer=lr_raw[[15]], shp_name="REC",      fun="sum", name="Recreation"),
+        river = list(layer=lr_raw[[16]], shp_name="RIVER",    fun="sum", name="River"),
+     sar_rich = list(layer=lr_raw[[17]], shp_name="SAR_RICH", fun="max", name="Species at Risk"),
+        shore = list(layer=lr_raw[[18]], shp_name="SHORE",    fun="sum", name="Shoreline"),
+          wet = list(layer=lr_raw[[19]], shp_name="WET",      fun="sum", name="Wetland")
+    )
+    
   # return
-  return(variables)
+  return(
+    list(
+      lr_raw = lr_raw, 
+      lr_ready = lr_ready, 
+      landr = landr
+      )
+    )
 }

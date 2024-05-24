@@ -18,7 +18,7 @@ app_server <- function(input, output, session) {
   if (nchar(env_wtw) > 0) {
     wtw_path <<- "/WTW_NAT_DATA" # path in docker container (production)
   } else {
-    wtw_path <<- "C:/Data/PRZ/WTW_DATA/WTW_NAT_DATA_20240124" # path in Dan Wismer local (dev)
+    wtw_path <<- "C:/Data/PRZ/WTW_DATA/WTW_NAT_DATA_20240522" # path in Dan Wismer local (dev)
   }  
   
   ## Assign esri API globally ----

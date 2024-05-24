@@ -17,28 +17,13 @@ export function dataFields(userName) {
       type: "double",
     },
     {
-      name: "LANDR_SUM",
-      alias: "Resilience Sum",
+      name: "LANDR",
+      alias: "Resilience",
       type: "double",
     },
     {
-      name: "LANDR_MU",
-      alias: "Resilience Mean",
-      type: "double",
-    },
-    {
-      name: "LANDR_MIN",
-      alias: "Resilience MIN",
-      type: "double",
-    },
-    {
-      name: "LANDR_MAX",
-      alias: "Resilience MAX",
-      type: "double",
-    },
-    {
-      name: "LANDR_SD",
-      alias: "Resilience SD",
+      name: "rLANDR",
+      alias: "Adjusted Resilience",
       type: "double",
     },
     {
@@ -57,7 +42,7 @@ export function dataFields(userName) {
       type: "double",
     },
     {
-      name: "CAROB_S",
+      name: "CARBON_S",
       alias: "Carbon Storage (tonnes)",
       type: "double",
     },
@@ -97,7 +82,7 @@ export function dataFields(userName) {
       type: "double",
     },
     {
-      name: "FOREST_LC",
+      name: "FOREST",
       alias: "Forest (ha)",
       type: "double",
     },
@@ -134,6 +119,91 @@ export function dataFields(userName) {
     {
       name: "HFI",
       alias: "Human Footprint (index)",
+      type: "double",
+    },
+    {
+      name: "pCH",
+      alias: "% Critical Habitat",
+      type: "double",
+    },
+    {
+      name: "pBIOD_GOAL",
+      alias: "% Common Species Goal",
+      type: "double",
+    },
+    {
+      name: "pEND_GOAL",
+      alias: "% Endemic Species Goal",
+      type: "double",
+    },
+    {
+      name: "pSAR_GOAL",
+      alias: "% Species at Risk Goal",
+      type: "double",
+    },
+    {
+      name: "pBIOD_RICH",
+      alias: "% Common Species Richness",
+      type: "double",
+    },
+    {
+      name: "pEND_RICH",
+      alias: "% Endemic Species Richness",
+      type: "double",
+    },
+    {
+      name: "pSAR_RICH",
+      alias: "% Species at Risk Richness",
+      type: "double",
+    },
+    {
+      name: "pCLIMATE_C",
+      alias: "% Climate Centrality",
+      type: "double",
+    },
+    {
+      name: "pCLIMATE_R",
+      alias: "% Climate Refugia",
+      type: "double",
+    },
+    {
+      name: "pCONNECT",
+      alias: "% Connectivity",
+      type: "double",
+    },
+    {
+      name: "pFOREST",
+      alias: "% Forest",
+      type: "double",
+    },
+    {
+      name: "pGRASS",
+      alias: "% Grassland",
+      type: "double",
+    },
+    {
+      name: "pRIVER",
+      alias: "% Rivers",
+      type: "double",
+    },
+    {
+      name: "pWET",
+      alias: "% Wetland",
+      type: "double",
+    },
+    {
+      name: "pSHORE",
+      alias: "% Shoreline",
+      type: "double",
+    },
+    {
+      name: "pHFI",
+      alias: "% Human Footprint",
+      type: "double",
+    },
+    {
+      name: "pCLIMATE_E",
+      alias: "% Climate Extreme",
       type: "double",
     },
   ];

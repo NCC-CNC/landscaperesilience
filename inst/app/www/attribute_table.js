@@ -26,8 +26,13 @@ export function attributeTbl(
         },
         {
           type: "field",
-          fieldName: "LANDR_SUM",
-          label: "Resilience Score",
+          fieldName: "LANDR",
+          label: "Resilience",
+        },
+        {
+          type: "field",
+          fieldName: "rLANDR",
+          label: "Adjusted Resilience",
         },
         {
           type: "field",
@@ -46,7 +51,7 @@ export function attributeTbl(
         },
         {
           type: "field",
-          fieldName: "FOREST_LC",
+          fieldName: "FOREST",
           label: "Forest (ha)",
         },
         {
