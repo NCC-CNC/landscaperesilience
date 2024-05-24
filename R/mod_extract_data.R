@@ -107,7 +107,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif
                  nBIOD_RICH + nEND_RICH + nSAR_RICH +
                  nCLIMATE_C + nCLIMATE_R +
                  nCONNECT +
-                 nFOREST + nGRASS + nWET + nSHORE
+                 nFOREST + nGRASS + nWET + nSHORE + nRIVER
              ) %>%
              mutate(LANDR_NEG = nCLIMATE_E + nHFI) %>%
              mutate(LANDR_ABS = LANDR_POS + LANDR_NEG) %>%
@@ -129,6 +129,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif
              mutate(pGRASS = (nGRASS / LANDR_ABS) * 100) %>%
              mutate(pWET = (nWET / LANDR_ABS) * 100) %>%
              mutate(pSHORE = (nSHORE / LANDR_ABS) * 100) %>%
+             mutate(pRIVER = (nRIVER / LANDR_ABS) * 100) %>%
              mutate(pCLIMATE_E = (nCLIMATE_E / LANDR_ABS) * 100) %>%
              mutate(pHFI = (nHFI / LANDR_ABS) * 100) %>%
              mutate(across(where(is.numeric), round, digits = 2))
