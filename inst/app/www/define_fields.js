@@ -182,6 +182,11 @@ export function dataFields(userName) {
       type: "double",
     },
     {
+      name: "pRIVER",
+      alias: "% Rivers",
+      type: "double",
+    },
+    {
       name: "pWET",
       alias: "% Wetland",
       type: "double",
@@ -189,6 +194,16 @@ export function dataFields(userName) {
     {
       name: "pSHORE",
       alias: "% Shoreline",
+      type: "double",
+    },
+    {
+      name: "pHFI",
+      alias: "% Human Footprint",
+      type: "double",
+    },
+    {
+      name: "pCLIMATE_E",
+      alias: "% Climate Extreme",
       type: "double",
     },
   ];

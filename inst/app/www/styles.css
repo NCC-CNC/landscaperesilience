@@ -175,3 +175,7 @@ div.tab-pane[data-value="Stats"] {
 #clear_data_1-clear_data {
   margin-top: -6px;
 }
+
+.esri-popup__main-container.esri-widget {
+      width: 310px !important;
+}
