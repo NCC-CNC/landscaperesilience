@@ -107,7 +107,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif
                  nBIOD_RICH + nEND_RICH + nSAR_RICH +
                  nCLIMATE_C + nCLIMATE_R +
                  nCONNECT +
-                 nFOREST + nGRASS + nWET + nSHORE + nRIVER
+                 nFOREST_LC + nGRASS + nWET + nSHORE + nRIVER
              ) %>%
              mutate(LANDR_NEG = nCLIMATE_E + nHFI) %>%
              mutate(LANDR_ABS = LANDR_POS + LANDR_NEG) %>%
@@ -125,7 +125,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif
              mutate(pCLIMATE_C = (nCLIMATE_C / LANDR_ABS) * 100) %>%
              mutate(pCLIMATE_R = (nCLIMATE_R / LANDR_ABS) * 100) %>%
              mutate(pCONNECT = (nCONNECT / LANDR_ABS) * 100) %>%
-             mutate(pFOREST = (nFOREST / LANDR_ABS) * 100) %>%
+             mutate(pFOREST_LC = (nFOREST_LC / LANDR_ABS) * 100) %>%
              mutate(pGRASS = (nGRASS / LANDR_ABS) * 100) %>%
              mutate(pWET = (nWET / LANDR_ABS) * 100) %>%
              mutate(pSHORE = (nSHORE / LANDR_ABS) * 100) %>%

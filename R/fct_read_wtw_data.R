@@ -43,7 +43,7 @@ read_wtw_data <- function(wtw_path) {
       connect = list(layer=lr_ready[[7]], shp_name="nCONNECT",   fun="sum", name="Connectivity"),
      end_goal = list(layer=lr_ready[[8]], shp_name="nEND_GOAL",  fun="sum", name="Endemic Goal"),
      end_rich = list(layer=lr_ready[[9]], shp_name="nEND_RICH",  fun="sum", name="Endemic Richness"),
-       forest = list(layer=lr_ready[[10]], shp_name="nFOREST",   fun="sum", name="Common Species Goal"),
+    forest_lc = list(layer=lr_ready[[10]], shp_name="nFOREST_LC",fun="sum", name="Forest Landcover"),
         grass = list(layer=lr_ready[[11]], shp_name="nGRASS",    fun="sum", name="Grassland"),
           hfi = list(layer=lr_ready[[12]], shp_name="nHFI",      fun="sum", name="Human Footprint Index"),
         river = list(layer=lr_ready[[13]], shp_name="nRIVER",    fun="sum", name="River"),
@@ -62,17 +62,18 @@ read_wtw_data <- function(wtw_path) {
     climate_r = list(layer=lr_raw[[6]], shp_name="CLIMATE_R", fun="sum", name="Climate Refugia"),
       connect = list(layer=lr_raw[[7]], shp_name="CONNECT",   fun="sum", name="Connectivity"),
      end_rich = list(layer=lr_raw[[8]], shp_name="END_RICH",  fun="max", name="Endemic Richness"),
-       forest = list(layer=lr_raw[[9]], shp_name="FOREST",    fun="sum", name="Forest"),
-       freshw = list(layer=lr_raw[[10]], shp_name="FRESHW",   fun="sum", name="Freshwater Provision"),
-        grass = list(layer=lr_raw[[11]], shp_name="GRASS",    fun="sum", name="Grassland"),
-          hfi = list(layer=lr_raw[[12]], shp_name="HFI",      fun="sum", name="Human Footprint"),
-        lakes = list(layer=lr_raw[[13]], shp_name="LAKES",    fun="sum", name="Lakes"),
-        parks = list(layer=lr_raw[[14]], shp_name="PARKS",    fun="sum", name="Protected Areas"),
-          rec = list(layer=lr_raw[[15]], shp_name="REC",      fun="sum", name="Recreation"),
-        river = list(layer=lr_raw[[16]], shp_name="RIVER",    fun="sum", name="River"),
-     sar_rich = list(layer=lr_raw[[17]], shp_name="SAR_RICH", fun="max", name="Species at Risk"),
-        shore = list(layer=lr_raw[[18]], shp_name="SHORE",    fun="sum", name="Shoreline"),
-          wet = list(layer=lr_raw[[19]], shp_name="WET",      fun="sum", name="Wetland")
+    forest_lc = list(layer=lr_raw[[9]], shp_name="FOREST_LC", fun="sum", name="Forest Landcover"),
+    forest_lu = list(layer=lr_raw[[10]], shp_name="FOREST_LU", fun="sum", name="Forest Landuse"),
+       freshw = list(layer=lr_raw[[11]], shp_name="FRESHW",   fun="sum", name="Freshwater Provision"),
+        grass = list(layer=lr_raw[[12]], shp_name="GRASS",    fun="sum", name="Grassland"),
+          hfi = list(layer=lr_raw[[13]], shp_name="HFI",      fun="sum", name="Human Footprint"),
+        lakes = list(layer=lr_raw[[14]], shp_name="LAKES",    fun="sum", name="Lakes"),
+        parks = list(layer=lr_raw[[15]], shp_name="PARKS",    fun="sum", name="Protected Areas"),
+          rec = list(layer=lr_raw[[16]], shp_name="REC",      fun="sum", name="Recreation"),
+        river = list(layer=lr_raw[[17]], shp_name="RIVER",    fun="sum", name="River"),
+     sar_rich = list(layer=lr_raw[[18]], shp_name="SAR_RICH", fun="max", name="Species at Risk"),
+        shore = list(layer=lr_raw[[19]], shp_name="SHORE",    fun="sum", name="Shoreline"),
+          wet = list(layer=lr_raw[[20]], shp_name="WET",      fun="sum", name="Wetland")
     )
     
   # return

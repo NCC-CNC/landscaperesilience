@@ -82,8 +82,13 @@ export function dataFields(userName) {
       type: "double",
     },
     {
-      name: "FOREST",
-      alias: "Forest (ha)",
+      name: "FOREST_LC",
+      alias: "Forest LC (ha)",
+      type: "double",
+    },
+    {
+      name: "FOREST_LU",
+      alias: "Forest LU (ha)",
       type: "double",
     },
     {

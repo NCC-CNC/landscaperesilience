@@ -51,8 +51,13 @@ export function attributeTbl(
         },
         {
           type: "field",
-          fieldName: "FOREST",
-          label: "Forest (ha)",
+          fieldName: "FOREST_LC",
+          label: "Forest Landcover (ha)",
+        },
+        {
+          type: "field",
+          fieldName: "FOREST_LU",
+          label: "Forest Landuse (ha)",
         },
         {
           type: "field",
