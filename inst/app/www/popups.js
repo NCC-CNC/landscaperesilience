@@ -22,23 +22,23 @@ export function dataPopup(userName, attr) {
 
   // Contribution label mapping
   const pVarsLabels = {
-    pBIOD_GOAL: "Common Species Goal",
-    pBIOD_RICH: "Common Species Richness",
-    pCH: "Critical Habitat",
-    pCLIMATE_C: "Climate Centrality",
-    pCLIMATE_R: "Climate Refugia",
-    pCONNECT: "Connectivity",
-    pEND_GOAL: "Endemic Species Goal",
-    pEND_RICH: "Endemic Species Richness",
-    pFOREST: "Forest",
-    pGRASS: "Grassland",
-    pRIVER: "Rivers",
-    pSAR_GOAL: "Species at Risk Goal",
-    pSAR_RICH: "Species at Risk Richness",
-    pSHORE: "Shoreline",
-    pWET: "Wetland",
-    pHFI: "Human Footprint",
-    pCLIMATE_E: "Climate Extremes",
+    pBIOD_GOAL: "<span class='landr-biod'>Common Species Goal</span>",
+    pBIOD_RICH: "<span class='landr-biod'>Common Species Richness</span>",
+    pCH: "<span class='landr-biod'>Critical Habitat</span>",
+    pCLIMATE_C: "<span class='landr-climate'>Climate Centrality</span>",
+    pCLIMATE_R: "<span class='landr-climate'>Climate Refugia</span>",
+    pCONNECT: "<span class='landr-connect'>Connectivity</span>",
+    pEND_GOAL: "<span class='landr-biod'>Endemic Species Goal </span>",
+    pEND_RICH: "<span class='landr-biod'>Endemic Species Richness </span>",
+    pFOREST: "<span class='landr-habitat'>Forest</span>",
+    pGRASS: "<span class='landr-habitat'>Grassland</span>",
+    pRIVER: "<span class='landr-habitat'>Rivers</span>",
+    pSAR_GOAL: "<span class='landr-biod'>Species at Risk Goal</span>",
+    pSAR_RICH: "<span class='landr-biod'>Species at Risk Richness</span>",
+    pSHORE: "<span class='landr-habitat'>Shoreline</span>",
+    pWET: "<span class='landr-habitat'>Wetland</span>",
+    pHFI: "<span class='landr-threat'>Human Footprint</span>",
+    pCLIMATE_E: "<span class='landr-threat'>Climate Extremes</span>",
   };
 
   // Get keys and values
@@ -81,28 +81,28 @@ export function dataPopup(userName, attr) {
       {
         type: "text",
         text: ` <div class="landr-popup">
-                <p> <b> Landscape Resilience</b>: 
+                <p> <span class="landr-title"><b> Landscape Resilience</b>: </span> 
                 ${attr["LANDR"].toLocaleString()} <br>
                 <b> Area </b>: ${attr["AREA_HA"].toLocaleString()} (ha) </p>
                 <b>Contribution to Resilience:</b>
                 <br>
-                 1. ${pVarsLabels[pVarsKeys[0]]}, ${pVarsValues[0]}%
+                 01. ${pVarsLabels[pVarsKeys[0]]}, ${pVarsValues[0]}%
                 <br>
-                 2. ${pVarsLabels[pVarsKeys[1]]}, ${pVarsValues[1]}%
+                 02. ${pVarsLabels[pVarsKeys[1]]}, ${pVarsValues[1]}%
                 <br>
-                 3. ${pVarsLabels[pVarsKeys[2]]}, ${pVarsValues[2]}%
+                 03. ${pVarsLabels[pVarsKeys[2]]}, ${pVarsValues[2]}%
                 <br>
-                 4.  ${pVarsLabels[pVarsKeys[3]]}, ${pVarsValues[3]}%
+                 04.  ${pVarsLabels[pVarsKeys[3]]}, ${pVarsValues[3]}%
                 <br>
-                 5. ${pVarsLabels[pVarsKeys[4]]}, ${pVarsValues[4]}%
+                 05. ${pVarsLabels[pVarsKeys[4]]}, ${pVarsValues[4]}%
                 <br>
-                 6. ${pVarsLabels[pVarsKeys[5]]}, ${pVarsValues[5]}%
+                 06. ${pVarsLabels[pVarsKeys[5]]}, ${pVarsValues[5]}%
                 <br>
-                 7. ${pVarsLabels[pVarsKeys[6]]}, ${pVarsValues[6]}%
+                 07. ${pVarsLabels[pVarsKeys[6]]}, ${pVarsValues[6]}%
                 <br>
-                 8. ${pVarsLabels[pVarsKeys[7]]}, ${pVarsValues[7]}%
+                 08. ${pVarsLabels[pVarsKeys[7]]}, ${pVarsValues[7]}%
                 <br>
-                 9. ${pVarsLabels[pVarsKeys[8]]}, ${pVarsValues[8]}%
+                 09. ${pVarsLabels[pVarsKeys[8]]}, ${pVarsValues[8]}%
                 <br>
                  10. ${pVarsLabels[pVarsKeys[9]]}, ${pVarsValues[9]}%
                 <br>

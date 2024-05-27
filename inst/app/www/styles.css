@@ -184,3 +184,33 @@ div.tab-pane[data-value="Stats"] {
 .landr-popup {
   line-height: 1.6;
 }
+
+.landr-title{
+  font-size: 1.1rem;
+  font-weight: bolder;
+}
+
+.landr-threat {
+  background-color: #FB8072;
+  font-weight: 900;
+}
+
+.landr-habitat {
+  background-color: #FFED6F;
+  font-weight: 900;
+}
+
+.landr-biod {
+  background-color: #8DD3C7;
+  font-weight: 900;
+}
+
+.landr-connect {
+  background-color: #FDB462;
+  font-weight: 900;
+}
+
+.landr-climate {
+  background-color: #FCCDE5;
+  font-weight: 900;
+}
