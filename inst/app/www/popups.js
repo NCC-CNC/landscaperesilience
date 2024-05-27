@@ -30,7 +30,7 @@ export function dataPopup(userName, attr) {
     pCONNECT: "<span class='landr-connect'>Connectivity</span>",
     pEND_GOAL: "<span class='landr-biod'>Endemic Species Goal </span>",
     pEND_RICH: "<span class='landr-biod'>Endemic Species Richness </span>",
-    pFOREST: "<span class='landr-habitat'>Forest Landcover</span>",
+    pFOREST_LC: "<span class='landr-habitat'>Forest Landcover</span>",
     pGRASS: "<span class='landr-habitat'>Grassland</span>",
     pRIVER: "<span class='landr-habitat'>Rivers</span>",
     pSAR_GOAL: "<span class='landr-biod'>Species at Risk Goal</span>",

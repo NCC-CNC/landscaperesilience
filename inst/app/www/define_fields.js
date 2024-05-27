@@ -177,7 +177,7 @@ export function dataFields(userName) {
       type: "double",
     },
     {
-      name: "pFOREST",
+      name: "pFOREST_LC",
       alias: "% Forest",
       type: "double",
     },
