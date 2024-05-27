@@ -80,10 +80,11 @@ export function dataPopup(userName, attr) {
     content: [
       {
         type: "text",
-        text: ` <p> <b> Landscape Resilience</b>: 
+        text: ` <div class="landr-popup">
+                <p> <b> Landscape Resilience</b>: 
                 ${attr["LANDR"].toLocaleString()} <br>
                 <b> Area </b>: ${attr["AREA_HA"].toLocaleString()} (ha) </p>
-                <p><b>Contribution to Resilience:</b>
+                <b>Contribution to Resilience:</b>
                 <br>
                  1. ${pVarsLabels[pVarsKeys[0]]}, ${pVarsValues[0]}%
                 <br>
@@ -119,7 +120,6 @@ export function dataPopup(userName, attr) {
                 <br>
                  17. ${pVarsLabels[pVarsKeys[16]]}, ${pVarsValues[16]}%
                 </p> 
-                <hr> 
                 <p> <b> Habitat (ha): </b>
                 <br>
                  ${habLabels[habKeys[0]]}: ${habValues[0].toLocaleString()}
@@ -147,6 +147,7 @@ export function dataPopup(userName, attr) {
                 Rivers:    ${attr["RIVER"].toLocaleString()} (km) <br>
                 Shoreline: ${attr["SHORE"].toLocaleString()} (km)
                 </p>
+                </div>
                 `,
       },
     ],

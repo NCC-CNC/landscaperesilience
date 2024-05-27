@@ -176,6 +176,11 @@ div.tab-pane[data-value="Stats"] {
   margin-top: -6px;
 }
 
+/* landr popup */
 .esri-popup__main-container.esri-widget {
       width: 310px !important;
+}
+
+.landr-popup {
+  line-height: 1.6;
 }
