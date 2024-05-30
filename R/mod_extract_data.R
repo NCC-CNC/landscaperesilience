@@ -53,9 +53,12 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif
              removeNotification(id_)
            }
            
+           # Validate shp and drop M & Z values
+           user_poly_valid <- shp_valid(user_poly()) # fct_shp_valid
+           
            # Project to Canada_Albers_WGS_1984
            if (st_crs(user_poly) != st_crs(input_data$landr)) {
-             user_poly_prj <- st_transform(user_poly(), crs= st_crs(input_data$landr))
+             user_poly_prj <- st_transform(user_poly_valid, crs= st_crs(input_data$landr))
            }
            
            # Create ObjectId
