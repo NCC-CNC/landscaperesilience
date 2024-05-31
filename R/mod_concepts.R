@@ -22,7 +22,7 @@ mod_concepts_ui <- function(id){
       inputId = ns("concept_selection"),
       label = NULL,
       choices = list(
-        "Landscape Resilience" = "landr.html",
+        "Landscape Resilience" = "landR.html",
         "Biodiversity" = c(
           "Critical Habitat" = "ch.html", 
            "Species at Risk" = "sar.html", 

@@ -226,9 +226,6 @@ div.tab-pane[data-value="Stats"] {
 }
 
 .landr-equation {
-  border: solid 0.2px black;
-  padding: 10px;
-  margin-bottom: 20px;
   line-height: 1.9;
 }
 
@@ -241,4 +238,13 @@ div.tab-pane[data-value="Stats"] {
   background-color: beige;
   color: #000 !important;
   font-weight: 600;
+}
+
+.selectize-dropdown .selected{
+  background-color: #f8f8f8;
+  color: #000;
+}
+.selectize-input.focus {
+  border-color: #33862B;
+  box-shadow: 0 0 0 0.25rem rgba(51, 134, 43, 0.25);
 }
