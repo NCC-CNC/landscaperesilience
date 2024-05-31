@@ -54,7 +54,7 @@ mod_concepts_ui <- function(id){
           "Freshwater Provision" = "freshw.html",
           "Lakes" = "lakes.html",
           "Recreation" = "rec.html",
-          "Protected" = "parks.html"
+          "Protected Areas" = "parks.html"
         )
        )
       )),
