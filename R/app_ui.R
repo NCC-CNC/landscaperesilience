@@ -43,17 +43,10 @@ app_ui <- function(request) {
                    card_body(
                      tags$div(id="histDiv", 
                        mod_histogram_popup_ui("histogram_popup_1")))))),
-              # Engagement
-                nav_panel(
-                  title = "Engagement",
-                  br(),
-                  p("Under Construction", icon("hammer"))
-                ),
               # Concepts
                 nav_panel(
-                  title = "Concepts",
-                  br(),
-                  p("Under Construction", icon("hammer"))
+                  title = "Overview",
+                  mod_concepts_ui("concepts_1")
                 )
           # Close side bar  
           )),

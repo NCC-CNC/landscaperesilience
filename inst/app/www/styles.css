@@ -190,27 +190,55 @@ div.tab-pane[data-value="Stats"] {
   font-weight: bolder;
 }
 
-.landr-threat {
-  background-color: #FB8072;
-  font-weight: 900;
+.landr-threat,
+[data-group="Threats"] .optgroup-header {
+  background-color: #FB8072 !important;
+  font-weight: 600;
+  color: #000;
 }
 
-.landr-habitat {
-  background-color: #FFED6F;
-  font-weight: 900;
+.landr-habitat,
+[data-group="Habitat"] .optgroup-header {
+  background-color: #FFED6F !important;
+  font-weight: 600;
+  color: #000 !important;
 }
 
-.landr-biod {
-  background-color: #8DD3C7;
-  font-weight: 900;
+.landr-biod,
+[data-group="Biodiversity"] .optgroup-header {
+  background-color: #8DD3C7 !important;
+  font-weight: 600;
+  color: #000 !important;
 }
 
-.landr-connect {
-  background-color: #FDB462;
-  font-weight: 900;
+.landr-connect,
+[data-group="Connectivity"] .optgroup-header {
+  background-color: #FDB462 !important;
+  font-weight: 600;
+  color: #000 !important;
 }
 
-.landr-climate {
-  background-color: #FCCDE5;
-  font-weight: 900;
+.landr-climate,
+[data-group="Climate"] .optgroup-header {
+  background-color: #FCCDE5 !important;
+  font-weight: 600;
+  color: #000 !important;
+}
+
+.landr-equation {
+  border: solid 0.2px black;
+  padding: 10px;
+  margin-bottom: 20px;
+  line-height: 1.9;
+}
+
+.landr-webtool {
+  margin-top: 15px
+}
+
+.landr-other,
+[data-group="Other Values"] .optgroup-header {
+  background-color: beige;
+  color: #000 !important;
+  font-weight: 600;
 }

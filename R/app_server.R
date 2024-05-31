@@ -98,6 +98,8 @@ app_server <- function(input, output, session) {
     )
   })
   
+  # concepts page ----
+  mod_concepts_server("concepts_1")
   
 # CLOSER SERVER  
 }
