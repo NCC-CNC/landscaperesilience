@@ -77,10 +77,9 @@ app_ui <- function(request) {
                 fluidRow(class="user-fields",
                   mod_name_from_user_poly_ui("name_from_user_poly_1")
                  ),
-                fluidRow(
-                  mod_upload_rasters_ui("upload_rasters_1")
-                ),
-                hr(), # section underline
+                #fluidRow(
+                #  mod_upload_rasters_ui("upload_rasters_1")
+                #),
                 tags$div(class= "extract-download",
                 fluidRow(
                   column(6, align = "center",
