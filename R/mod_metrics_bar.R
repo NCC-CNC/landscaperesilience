@@ -17,7 +17,7 @@ mod_metrics_bar_ui <- function(id){
           label = NULL,
           choices = c(
             "Landscape Resilience" = "LANDR",
-            "Adjusted Landscape Resilience" = "rLANDR",
+            "Adjusted Landscape Resilience" = "adjLANDR",
             "Area (ha)" = "AREA_HA",
             "Critical Habitat (cumulative ha)" = "CH",
             "Species at Risk (count)" = "SAR_RICH",

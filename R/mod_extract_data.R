@@ -157,10 +157,10 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif
              }
            }
            
-           # Combine extractions into one sf object
+           # Combine extractions into one sf object, calculate adjusted LandR
            user_poly_prj <- cbind(user_poly_prj, extracted_max, extracted_sum, extracted_lr_ready) %>%
              relocate(LANDR, .after = AREA_HA) %>%
-             mutate(rLANDR = round(LANDR / AREA_HA, 4), .after = LANDR)
+             mutate(adjLANDR = round(LANDR / AREA_HA, 4), .after = LANDR)
            
            # Project to WGS
            user_poly_wgs <- st_transform(user_poly_prj, crs=4326)
