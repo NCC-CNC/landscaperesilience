@@ -197,27 +197,27 @@ div.tab-pane[data-value="Stats"] {
 }
 .themes .landr-biod {
   background-color: #fff !important;
-  border-bottom: solid 4px #8DD3C7;
+  border-bottom: solid 2px #8DD3C7;
 }
 
 .themes .landr-connect {
   background-color: #fff !important;
-  border-bottom: solid 4px #FDB462;
+  border-bottom: solid 2px #FDB462;
 }
 
 .themes .landr-climate {
   background-color: #fff !important;
-  border-bottom: solid 4px #FCCDE5;
+  border-bottom: solid 2px #FCCDE5;
 }
 
 .themes .landr-habitat {
   background-color: #fff !important;
-  border-bottom: solid 4px #FFED6F;
+  border-bottom: solid 2px #FFED6F;
 }
 
 .themes .landr-threat {
   background-color: #fff !important;
-  border-bottom: solid 4px #FB8072;
+  border-bottom: solid 2px #FB8072;
 }
 
 .landr-biod,
