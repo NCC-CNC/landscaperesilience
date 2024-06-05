@@ -27,6 +27,11 @@ export function dataFields(userName) {
       type: "double",
     },
     {
+      name: "CH",
+      alias: "Critical Habitat (cumulative ha)",
+      type: "double",
+    },
+    {
       name: "SAR_RICH",
       alias: "Species at Risk (range count)",
       type: "double",

@@ -131,13 +131,11 @@ export function dataPopup(userName, attr) {
                 <br>
                  ${habLabels[habKeys[3]]}: ${habValues[3].toLocaleString()}
                 </p>
-                <p> <b> Species Count: </b>
-                <br>
-                At Risk: ${attr["SAR_RICH"]} 
-                <br>
-                Endemics: ${attr["END_RICH"]} 
-                <br>
-                Common: ${attr["BIOD_RICH"]} 
+                <p> <b> Species Count: </b> <br>
+                At Risk: ${attr["SAR_RICH"]} <br>
+                Endemics: ${attr["END_RICH"]} <br>
+                Common: ${attr["BIOD_RICH"]} <br>
+                Critical Habitat: ${attr["CH"]} (cumulative ha)
                 </p>
                 <p> <b> Carbon: </b>
                 <br>

@@ -36,6 +36,11 @@ export function attributeTbl(
         },
         {
           type: "field",
+          fieldName: "CH",
+          label: "Ctitical Habitat (cumulative ha)",
+        },
+        {
+          type: "field",
           fieldName: "SAR_RICH",
           label: "Species at Risk (range count)",
         },

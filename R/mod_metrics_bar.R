@@ -19,6 +19,7 @@ mod_metrics_bar_ui <- function(id){
             "Landscape Resilience" = "LANDR",
             "Adjusted Landscape Resilience" = "rLANDR",
             "Area (ha)" = "AREA_HA",
+            "Critical Habitat (cumulative ha)" = "CH",
             "Species at Risk (count)" = "SAR_RICH",
             "Endemic Species (count)" = "END_RICH",
             "Common Species (count)" = "BIOD_RICH",
