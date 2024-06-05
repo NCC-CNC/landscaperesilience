@@ -185,23 +185,39 @@ div.tab-pane[data-value="Stats"] {
   line-height: 1.6;
 }
 
-.landr-title{
+/* landr overview  */
+.landr-title {
   font-size: 1.1rem;
   font-weight: bolder;
 }
 
-.landr-threat,
-[data-group="Threats"] .optgroup-header {
-  background-color: #FB8072 !important;
+.themes span {
   font-weight: 600;
   color: #000;
 }
+.themes .landr-biod {
+  background-color: #fff !important;
+  border-bottom: solid 4px #8DD3C7;
+}
 
-.landr-habitat,
-[data-group="Habitat"] .optgroup-header {
-  background-color: #FFED6F !important;
-  font-weight: 600;
-  color: #000 !important;
+.themes .landr-connect {
+  background-color: #fff !important;
+  border-bottom: solid 4px #FDB462;
+}
+
+.themes .landr-climate {
+  background-color: #fff !important;
+  border-bottom: solid 4px #FCCDE5;
+}
+
+.themes .landr-habitat {
+  background-color: #fff !important;
+  border-bottom: solid 4px #FFED6F;
+}
+
+.themes .landr-threat {
+  background-color: #fff !important;
+  border-bottom: solid 4px #FB8072;
 }
 
 .landr-biod,
@@ -225,12 +241,18 @@ div.tab-pane[data-value="Stats"] {
   color: #000 !important;
 }
 
-.landr-equation {
-  line-height: 1.9;
+.landr-habitat,
+[data-group="Habitat"] .optgroup-header {
+  background-color: #FFED6F !important;
+  font-weight: 600;
+  color: #000 !important;
 }
 
-.landr-webtool {
-  margin-top: 15px
+.landr-threat,
+[data-group="Threats"] .optgroup-header {
+  background-color: #FB8072 !important;
+  font-weight: 600;
+  color: #000;
 }
 
 .landr-other,
@@ -240,6 +262,15 @@ div.tab-pane[data-value="Stats"] {
   font-weight: 600;
 }
 
+.landr-equation {
+  line-height: 1.9;
+}
+
+.landr-webtool {
+  margin-top: 15px
+}
+
+/* select drop down  */
 .selectize-dropdown .selected{
   background-color: #f8f8f8;
   color: #000;

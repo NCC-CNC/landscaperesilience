@@ -13,9 +13,8 @@ mod_concepts_ui <- function(id){
     tags$div(class="concepts landr-webtool",
     fluidRow(column(12,
       htmltools::HTML(
-      "The <b>Landscape Resilience Webtool</b> is designed to support 
-      conservation planning. Use this tool to extract spatial data standardized 
-      at the 1km grid size to project boundaries."
+      "The <b>Landscape Resilience Webtool</b> extracts spatial data standardized 
+      at the 1km grid size to project boundaries. Use this tool evaluate conservation values."
     )))),
     fluidRow(column(11,
     selectInput(
@@ -54,7 +53,7 @@ mod_concepts_ui <- function(id){
           "Freshwater Provision" = "freshw.html",
           "Lakes" = "lakes.html",
           "Recreation" = "rec.html",
-          "Protected Areas" = "parks.html"
+          "Protected Areas" = "protected.html"
         )
        )
       )),
