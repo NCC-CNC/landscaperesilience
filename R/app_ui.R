@@ -65,7 +65,7 @@ app_ui <- function(request) {
                 "Zonal Statistics",
                 tooltip(
                   bs_icon("info-circle"),
-                  "Extract spatial data standardized at the 1km grid size to polygons.",
+                  "Extract spatial data standardized at a 1km grid size to polygons.",
                   placement = "right"
                 )
               ),
