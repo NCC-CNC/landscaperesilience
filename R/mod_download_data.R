@@ -70,7 +70,6 @@ mod_download_data_server <- function(id, user_poly_download, shp_name){
     addStyle(wb, sheet = 2, style = header_style, rows = 1, cols = 1:2, gridExpand = TRUE)
     addStyle(wb, sheet = 3, style = header_style, rows = 1, cols = 1:ncol(landr_norm), gridExpand = TRUE)
     addStyle(wb, sheet = 4, style = header_style, rows = 1, cols = 1:6, gridExpand = TRUE)
-    
     saveWorkbook(wb, paste0(td, "/", shp_name, "_LandR.xlsx"), overwrite = TRUE)
     
     # Zip

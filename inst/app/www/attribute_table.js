@@ -27,12 +27,12 @@ export function attributeTbl(
         {
           type: "field",
           fieldName: "LANDR",
-          label: "Resilience",
+          label: "Resilience Score",
         },
         {
           type: "field",
-          fieldName: "rLANDR",
-          label: "Adjusted Resilience",
+          fieldName: "adjLANDR",
+          label: "Adjusted Resilience Score",
         },
         {
           type: "field",

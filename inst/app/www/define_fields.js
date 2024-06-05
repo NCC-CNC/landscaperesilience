@@ -22,7 +22,7 @@ export function dataFields(userName) {
       type: "double",
     },
     {
-      name: "rLANDR",
+      name: "adjLANDR",
       alias: "Adjusted Resilience",
       type: "double",
     },

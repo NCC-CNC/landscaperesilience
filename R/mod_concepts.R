@@ -14,7 +14,7 @@ mod_concepts_ui <- function(id){
     fluidRow(column(12,
       htmltools::HTML(
       "The <b>Landscape Resilience Webtool</b> extracts spatial data standardized 
-      at the 1km grid size to project boundaries. Use this tool evaluate conservation values."
+      at the 1km grid size to project boundaries. Use this tool to evaluate conservation values."
     )))),
     fluidRow(column(11,
     selectInput(
