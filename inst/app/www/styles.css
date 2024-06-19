@@ -175,3 +175,111 @@ div.tab-pane[data-value="Stats"] {
 #clear_data_1-clear_data {
   margin-top: -6px;
 }
+
+/* landr popup */
+.esri-popup__main-container.esri-widget {
+      width: 310px !important;
+}
+
+.landr-popup {
+  line-height: 1.6;
+}
+
+/* landr overview  */
+.landr-title {
+  font-size: 1.1rem;
+  font-weight: bolder;
+}
+
+.themes span {
+  font-weight: 600;
+  color: #000;
+}
+.themes .landr-biod {
+  background-color: #fff !important;
+  border-bottom: solid 2px #8DD3C7;
+}
+
+.themes .landr-connect {
+  background-color: #fff !important;
+  border-bottom: solid 2px #FDB462;
+}
+
+.themes .landr-climate {
+  background-color: #fff !important;
+  border-bottom: solid 2px #FCCDE5;
+}
+
+.themes .landr-habitat {
+  background-color: #fff !important;
+  border-bottom: solid 2px #FFED6F;
+}
+
+.themes .landr-threat {
+  background-color: #fff !important;
+  border-bottom: solid 2px #FB8072;
+}
+
+.landr-biod,
+[data-group="Biodiversity"] .optgroup-header {
+  background-color: #8DD3C7 !important;
+  font-weight: 600;
+  color: #000 !important;
+}
+
+.landr-connect,
+[data-group="Connectivity"] .optgroup-header {
+  background-color: #FDB462 !important;
+  font-weight: 600;
+  color: #000 !important;
+}
+
+.landr-climate,
+[data-group="Climate"] .optgroup-header {
+  background-color: #FCCDE5 !important;
+  font-weight: 600;
+  color: #000 !important;
+}
+
+.landr-habitat,
+[data-group="Habitat"] .optgroup-header {
+  background-color: #FFED6F !important;
+  font-weight: 600;
+  color: #000 !important;
+}
+
+.landr-threat,
+[data-group="Threats"] .optgroup-header {
+  background-color: #FB8072 !important;
+  font-weight: 600;
+  color: #000;
+}
+
+.landr-other,
+[data-group="Other Values"] .optgroup-header {
+  background-color: beige;
+  color: #000 !important;
+  font-weight: 600;
+}
+
+.landr-equation {
+  line-height: 1.9;
+}
+
+.landr-webtool {
+  margin-top: 15px
+}
+
+/* select drop down  */
+.selectize-dropdown .selected{
+  background-color: #f8f8f8;
+  color: #000;
+}
+.selectize-input.focus {
+  border-color: #33862B;
+  box-shadow: 0 0 0 0.25rem rgba(51, 134, 43, 0.25);
+}
+
+#extractPanel > div {
+  margin-bottom: 0px;
+}

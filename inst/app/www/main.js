@@ -60,8 +60,8 @@ require([
 
   // add resilience layer
   let landR = new TileLayer({
-    url: "https://tiles.arcgis.com/tiles/etzrVYxPRxn7Nirj/arcgis/rest/services/LandR_20240124/MapServer",
-    opacity: 0.65,
+    url: "https://tiles.arcgis.com/tiles/etzrVYxPRxn7Nirj/arcgis/rest/services/LandR_20240524/MapServer",
+    opacity: 0.7,
     title: "Landscape Resilience",
     listMode: "hide-children",
   });
@@ -167,10 +167,11 @@ require([
       view.on("click", (event) => {
         view.hitTest(event).then(({ results }) => {
           let polyOID = results[0].graphic.attributes.OID;
+          let attr = results[0].graphic.attributes;
           popupClick += 1;
           Shiny.setInputValue("popupClick", popupClick);
           Shiny.setInputValue("polyOID", polyOID);
-          geojsonLayer.popupTemplate = dataPopup(userName);
+          geojsonLayer.popupTemplate = dataPopup(userName, attr);
         });
       });
 

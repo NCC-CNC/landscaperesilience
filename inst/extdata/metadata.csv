@@ -1,11 +1,13 @@
 Code,Metric,Unit,Source,Description,Link
-AREA_HA,Area,ha,GIS Derived,,
-LANDR,Landscape Resilience,cummulative score,GIS Derived,,
+AREA_HA,Area,ha,GIS Derived,Area of polygon,
+LANDR,Landscape Resilience,cummulative score,GIS Derived,"Sum of ecological variables that capture themes of biodiversity, connectivity, climate, habitat, and threats at the landscape scale.",
+adjLANDR,Adjusted Landscape Resilience,cummulative score,GIS Derived,Landscape Resilience Score divided by area,
+CH,Critical Habitat,cumulative ha,Climate Change Canada (ECCC) and Parks Canada Agency (PCA),Areas identified as necessary for the survival or recovery of terrestrial species at risk,
 SAR_RICH,Species at Risk,range count,ECCC SAR Range Map Extents,"Geographic range data for 488 Species at risk based on NatureServe data, SAR recovery strategies, Environment Canada resources and COSEWIC status reports.",https://open.canada.ca/data/en/dataset/d00f8e8c-40c4-435a-b790-980339ce3121 
 END_RICH,Endemic Species,count,Nature Serve Canada,Locations where the presence of nationally endemic species has been confirmed at a 10x10km grid,Internal Use Only
 BIOD_RICH,Common Species,count,International Union for Conservation of Nature,"Based on the IUCN range maps, but incorporate habitat and elevation data to map extent of suitable habitat",Internal NCC
 CARBON_S,Carbon Storage,tonnes,Mitchell et al. 2021,"Total aboveground carbon, including live and dead biomass, and belowground soil carbon.",https://iopscience.iop.org/article/10.1088/1748-9326/abc121 
-CARBON_P,Carbon Potential,tonnes per year,NCC,CO2e per hectare of forest based on yearly growth rates provided by NRCAN for the 2BT EOI and NRCAN's NFI's Maps of Canada's forest attributes from 2011.,R:\NCCGIS\PROJECTS\NATCON\FINANCE\CARBON\NFI_CO2e.pptx
+CARBON_P,Carbon Potential,tonnes per year,Natural Resources Canada (NRCan),CO2e per hectare of forest based on yearly growth rates provided by NRCAN for the 2BT EOI and NRCAN's NFI's Maps of Canada's forest attributes from 2011.,R:\NCCGIS\PROJECTS\NATCON\FINANCE\CARBON\NFI_CO2e.pptx
 CONNECT,Connectivity,current density,"Pither et al, 2023",Considered anthropogenic and natural features and their known effects on the movement of terrestrial non-volant fauna to predict connectivity.,https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0281980 
 CLIMATE_C,Climate Forward Shortest-Path Centrality,index,Carroll et al. 2018,Represents connectivity between current and future climate analogs.,https://adaptwest.databasin.org/pages/climate-connectivity-north-america/ 
 CLIMATE_E,Climate Extremes,index,La Sorte et al. 2021,Captures extreme climate stressors on biodiversity.,https://link.springer.com/article/10.1007/s10584-021-03094-0 
@@ -18,3 +20,8 @@ WET,Wetland,ha,CanVec,Satureated soil features,https://open.canada.ca/data/en/da
 RIVER,River,km,NRCAN,Hydrographic features,https://open.canada.ca/data/en/dataset/9d96e8c9-22fe-4ad2-b5e8-94a6991b744b 
 SHORE,Shoreline,km,CanVec,Shoreline delineation,https://open.canada.ca/data/en/dataset/80aa8ec6-4947-48de-bc9c-7d09d48b4cad 
 HFI,Human Footprint,index,"Hirish-Pearson et al, 2021","considers built environments, population density, nighttime lights, crop lands, pasture lands, forestry, railways, roads dams, reservoirs, navigable waterways, mining and oil and gas disturbances.",https://www.facetsjournal.com/doi/full/10.1139/facets-2021-0063 
+LANDR_POS,Positive Landscape Resilience,index,GIS Derived,Sum of variables that are positive to Landscape Resilience,
+LANDR_NEG,Negative Landscape Resilience,index,GIS Derived,Sum of variables that are negative to Landscape Resilience,
+LANDR_ABS,Absolute Landscape Resilience,index,GIS Derived,Absolute value of the sum of positive and negative Landscape Resileince Score,
+"*PREXIX ""n""",Normalized,index,,Min-max normalization method,
+"*PREXIX ""p""",Contribution Percent,%,,Normalized variable divided by absoulte LandR value,

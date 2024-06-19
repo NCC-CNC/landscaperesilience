@@ -26,8 +26,18 @@ export function attributeTbl(
         },
         {
           type: "field",
-          fieldName: "LANDR_SUM",
+          fieldName: "LANDR",
           label: "Resilience Score",
+        },
+        {
+          type: "field",
+          fieldName: "adjLANDR",
+          label: "Adjusted Resilience Score",
+        },
+        {
+          type: "field",
+          fieldName: "CH",
+          label: "Ctitical Habitat (cumulative ha)",
         },
         {
           type: "field",
@@ -47,7 +57,12 @@ export function attributeTbl(
         {
           type: "field",
           fieldName: "FOREST_LC",
-          label: "Forest (ha)",
+          label: "Forest Landcover (ha)",
+        },
+        {
+          type: "field",
+          fieldName: "FOREST_LU",
+          label: "Forest Landuse (ha)",
         },
         {
           type: "field",

@@ -43,17 +43,10 @@ app_ui <- function(request) {
                    card_body(
                      tags$div(id="histDiv", 
                        mod_histogram_popup_ui("histogram_popup_1")))))),
-              # Engagement
-                nav_panel(
-                  title = "Engagement",
-                  br(),
-                  p("Under Construction", icon("hammer"))
-                ),
               # Concepts
                 nav_panel(
-                  title = "Concepts",
-                  br(),
-                  p("Under Construction", icon("hammer"))
+                  title = "Overview",
+                  mod_concepts_ui("concepts_1")
                 )
           # Close side bar  
           )),
@@ -72,7 +65,7 @@ app_ui <- function(request) {
                 "Zonal Statistics",
                 tooltip(
                   bs_icon("info-circle"),
-                  "Extract impact metrics to polygons.",
+                  "Extract spatial data standardized at a 1km grid size to polygons.",
                   placement = "right"
                 )
               ),
@@ -84,10 +77,9 @@ app_ui <- function(request) {
                 fluidRow(class="user-fields",
                   mod_name_from_user_poly_ui("name_from_user_poly_1")
                  ),
-                fluidRow(
-                  mod_upload_rasters_ui("upload_rasters_1")
-                ),
-                hr(), # section underline
+                #fluidRow(
+                #  mod_upload_rasters_ui("upload_rasters_1")
+                #),
                 tags$div(class= "extract-download",
                 fluidRow(
                   column(6, align = "center",
