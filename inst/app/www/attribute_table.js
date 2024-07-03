@@ -37,7 +37,7 @@ export function attributeTbl(
         {
           type: "field",
           fieldName: "CH",
-          label: "Ctitical Habitat (cumulative ha)",
+          label: "Critical Habitat (cumulative ha)",
         },
         {
           type: "field",
