@@ -11,14 +11,14 @@ app_server <- function(input, output, session) {
   options(shiny.maxRequestSize = 1000*1024^2) # 1GB
   
   # Get system environmental variables ----
-  env_wtw <<- Sys.getenv("WTW_NAT_DATA")
+  env_nat_1km <<- Sys.getenv("NAT_1KM")
   env_esri <<- Sys.getenv("ESRI_API")
   
   ## Assign wtw path globally ----
-  if (nchar(env_wtw) > 0) {
-    wtw_path <<- "/WTW_NAT_DATA" # path in docker container (production)
+  if (nchar(env_nat_1km) > 0) {
+    nat_1km <<- "/NAT_1KM" # path in docker container (production)
   } else {
-    wtw_path <<- "C:/Data/PRZ/WTW_DATA/WTW_NAT_DATA_20240522" # path in Dan Wismer local (dev)
+    nat_1km <<- "C:/Data/PRZ/NAT_DATA/NAT_1KM_20240626" # path in Dan Wismer local (dev)
   }  
   
   ## Assign esri API globally ----
@@ -57,7 +57,7 @@ app_server <- function(input, output, session) {
   extracted <- mod_extract_data_server(
     id = "extract_data_1",
     user_poly = reactive(shp$user_poly), 
-    wtw_path = wtw_path,
+    nat_1km = nat_1km,
     shp_name_field = shp_name_field$shp_name_field,
     tif_data = tif_data,
     shp_name = reactive(shp$shp_name)

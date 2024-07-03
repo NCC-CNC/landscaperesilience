@@ -35,11 +35,11 @@ mod_download_data_server <- function(id, user_poly_download, shp_name){
     # Get normalized and percent columns
     landr_norm <-  user_poly_download() %>% 
       st_drop_geometry() %>%
-      select(-c(LANDR:WET))
+      select(-c(LANDR:HFI))
     
     # Drop normalized and percent columns in sf
     user_poly_to_download <- user_poly_download() %>%
-      select(1:which(names(user_poly_download()) == "WET"))
+      select(1:which(names(user_poly_download()) == "HFI"))
     
     # Save shapefile to tmp director
     sf::write_sf(user_poly_to_download, paste0(td, "/", shp_name, "_LandR.shp"))

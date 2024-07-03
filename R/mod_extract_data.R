@@ -19,7 +19,7 @@ mod_extract_data_ui <- function(id){
 #' extract data Server Functions
 #'
 #' @noRd 
-mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif_data = NULL, shp_name) {
+mod_extract_data_server <- function(id, user_poly, nat_1km, shp_name_field, tif_data = NULL, shp_name) {
   moduleServer(id, function(input, output, session){
     ns <- session$ns
     # Return
@@ -49,7 +49,7 @@ mod_extract_data_server <- function(id, user_poly, wtw_path, shp_name_field, tif
            # Load wtw data only once
            if (input$extract_data == 1) {
              id_ <- showNotification("... loading data", duration = 0, closeButton=close)
-             input_data <<- read_wtw_data(wtw_path) # fct_read_wtw_data.R
+             input_data <<- read_nat_1km(nat_1km) # fct_read_nat_1km.R
              removeNotification(id_)
            }
            
