@@ -13,8 +13,7 @@ tot_tbl <- function(sf) {
     st_drop_geometry() %>%
     summarise(
       `Area (ha)` = sum(AREA_HA), n = n(),
-      `Forest LC (ha)` = sum(FOREST_LC), n = n(),
-      `Forest LU (ha)` = sum(FOREST_LU), n = n(),
+      `Forest (ha)` = sum(FOREST), n = n(),
       `Wetland (ha)` = sum(WET), n = n(),
       `Grassland (ha)` = sum(GRASS), n = n(),
       `Lakes (ha)` = sum(LAKES), n = n(),

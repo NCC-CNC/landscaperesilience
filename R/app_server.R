@@ -18,7 +18,7 @@ app_server <- function(input, output, session) {
   if (nchar(env_nat_1km) > 0) {
     nat_1km <<- "/NAT_1KM" # path in docker container (production)
   } else {
-    nat_1km <<- "C:/Data/PRZ/NAT_DATA/NAT_1KM_20240626" # path in Dan Wismer local (dev)
+    nat_1km <<- "C:/Data/PRZ/NAT_DATA/NAT_1KM_20240729" # path in Dan Wismer local (dev)
   }  
   
   ## Assign esri API globally ----

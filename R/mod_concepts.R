@@ -36,7 +36,7 @@ mod_concepts_ui <- function(id){
           "Climate Refugia" = "climate_r.html"
         ),
         "Habitat" = c(
-          "Forest Landcover" = "forest_lc.html", 
+          "Forest" = "forest_lc.html", 
           "Grassland" = "grass.html", 
           "Rivers" = "river.html",
           "Shoreline" = "shore.html",
@@ -49,7 +49,6 @@ mod_concepts_ui <- function(id){
         "Other Values" = c(
           "Carbon Storage" = "carbon_s.html",
           "Carbon Potential" = "carbon_p.html",
-          "Forest Landuse" = "forest_lu.html",
           "Freshwater Provision" = "freshw.html",
           "Lakes" = "lakes.html",
           "Recreation" = "rec.html",
