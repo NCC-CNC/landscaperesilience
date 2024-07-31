@@ -30,7 +30,7 @@ export function dataPopup(userName, attr) {
     pCONNECT: "<span class='landr-connect'>Connectivity</span>",
     pEND_GOAL: "<span class='landr-biod'>Endemic Species Goal </span>",
     pEND_RICH: "<span class='landr-biod'>Endemic Species Richness </span>",
-    pFOREST_LC: "<span class='landr-habitat'>Forest Landcover</span>",
+    pFOREST_LC: "<span class='landr-habitat'>Forest </span>",
     pGRASS: "<span class='landr-habitat'>Grassland</span>",
     pRIVER: "<span class='landr-habitat'>Rivers</span>",
     pSAR_GOAL: "<span class='landr-biod'>Species at Risk Goal</span>",
@@ -47,7 +47,7 @@ export function dataPopup(userName, attr) {
 
   // Habitat ranking
   let hab = {};
-  ["FOREST_LC", "FOREST_LU", "WET", "GRASS"].forEach((key) => {
+  ["FOREST", "WET", "GRASS"].forEach((key) => {
     if (attr.hasOwnProperty(key)) {
       hab[key] = attr[key];
     }
@@ -64,8 +64,7 @@ export function dataPopup(userName, attr) {
 
   // Habitat label mapping
   const habLabels = {
-    FOREST_LC: "Forest Landcover",
-    FOREST_LU: "Forest Landuse",
+    FOREST: "Forest",
     GRASS: "Grassland",
     WET: "Wetland",
   };
@@ -128,8 +127,6 @@ export function dataPopup(userName, attr) {
                  ${habLabels[habKeys[1]]}: ${habValues[1].toLocaleString()} 
                 <br>
                  ${habLabels[habKeys[2]]}: ${habValues[2].toLocaleString()}
-                <br>
-                 ${habLabels[habKeys[3]]}: ${habValues[3].toLocaleString()}
                 </p>
                 <p> <b> Species Count: </b> <br>
                 At Risk: ${attr["SAR_RICH"]} <br>
