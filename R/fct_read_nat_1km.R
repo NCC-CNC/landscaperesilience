@@ -21,7 +21,7 @@ read_nat_1km <- function(nat_1km) {
   # Subset for all normalized layers
   lr_ready <- grep("norm", nat_1km_tifs, value = TRUE)
   # Subset for raw layers
-  lr_raw <- grep("norm|goals|_1km|cons.tif|d2_cons|kba|landr", nat_1km_tifs, invert = TRUE, value = TRUE)
+  lr_raw <- grep("norm|goals|_1km|cons.tif|kba|landr", nat_1km_tifs, invert = TRUE, value = TRUE)
   
   # Read-in variables as terra::rast
   lr_ready <- lapply(lr_ready, rast)
@@ -66,14 +66,13 @@ read_nat_1km <- function(nat_1km) {
         parks = list(layer=lr_raw[[11]], shp_name="PARKS",    fun="sum", name="Protected Areas"),
        freshw = list(layer=lr_raw[[12]], shp_name="FRESHW",   fun="sum", name="Freshwater Provision"),
           rec = list(layer=lr_raw[[13]], shp_name="REC",      fun="sum", name="Recreation"),
-    forest_lc = list(layer=lr_raw[[14]], shp_name="FOREST_LC", fun="sum", name="Forest Landcover"),
-    forest_lu = list(layer=lr_raw[[15]], shp_name="FOREST_LU", fun="sum", name="Forest Landuse"),
-        grass = list(layer=lr_raw[[16]], shp_name="GRASS",    fun="sum", name="Grassland"),
-        lakes = list(layer=lr_raw[[17]], shp_name="LAKES",    fun="sum", name="Lakes"),
-        river = list(layer=lr_raw[[18]], shp_name="RIVER",    fun="sum", name="River"),
-        shore = list(layer=lr_raw[[19]], shp_name="SHORE",    fun="sum", name="Shoreline"),
-          wet = list(layer=lr_raw[[20]], shp_name="WET",      fun="sum", name="Wetland"),
-          hfi = list(layer=lr_raw[[21]], shp_name="HFI",      fun="sum", name="Human Footprint")
+    forest_lc = list(layer=lr_raw[[14]], shp_name="FOREST",   fun="sum", name="Forest"),
+        grass = list(layer=lr_raw[[15]], shp_name="GRASS",    fun="sum", name="Grassland"),
+        lakes = list(layer=lr_raw[[16]], shp_name="LAKES",    fun="sum", name="Lakes"),
+        river = list(layer=lr_raw[[17]], shp_name="RIVER",    fun="sum", name="River"),
+        shore = list(layer=lr_raw[[18]], shp_name="SHORE",    fun="sum", name="Shoreline"),
+          wet = list(layer=lr_raw[[19]], shp_name="WET",      fun="sum", name="Wetland"),
+          hfi = list(layer=lr_raw[[20]], shp_name="HFI",      fun="sum", name="Human Footprint")
     )
     
   # return
